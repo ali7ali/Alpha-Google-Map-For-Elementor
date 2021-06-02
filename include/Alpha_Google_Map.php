@@ -210,7 +210,7 @@ class Alpha_Google_Map extends Widget_Base {
 				'default'     => array(
 					'map_latitude'  => '51.501156639895136',
 					'map_longitude' => '-0.12479706299020504',
-					'pin_title'     => __( 'Vigor Google Maps', 'alpha-google-map-for-elementor' ),
+					'pin_title'     => __( 'Alpha Google Maps', 'alpha-google-map-for-elementor' ),
 					'pin_desc'      => __( 'Add an optional description to your map pin', 'alpha-google-map-for-elementor' ),
 					'pin_time_desc'      => __( 'Add a time table for the location pin', 'alpha-google-map-for-elementor' ),
 				),
