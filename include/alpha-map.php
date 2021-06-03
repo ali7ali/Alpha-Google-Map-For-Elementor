@@ -5,7 +5,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 final class Alpha_Google_Map_For_Elementor {
     const MINIMUM_ELEMENTOR_VERSION = '2.5.0';
-    const MINIMUM_PHP_VERSION = '7.0';
+    const MINIMUM_PHP_VERSION = '5.6';
     private static $_instance = null;
     
     public static function instance() {

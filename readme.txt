@@ -1,10 +1,11 @@
 === Alpha Google Map For Elementor ===
 Author: Ali Ali
-Tags: google-map, google, premium, elementor, alpha
-Requires at least: 5.5
+Contributors: Ali Ali
+Tags: google-map, google, premium, elementor, alpha, page builder, landing page, drag-and-drop
+Requires at least: 5.0
 Tested up to: 5.7
-Requires PHP: 7.0
-Stable tag: 5.2.2
+Requires PHP: 5.6
+Stable tag: 1.0.1
 License: GPLv3
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
 
@@ -18,15 +19,56 @@ Plugin features
  * Pins change on-hover and active
  * Custom info-box with image gallery feature
  * Map controls
+ * Responsive Live Editing
+
+Elementor Website  Builder comes with an exclusive toolset, that lets you create a truly responsive website in a whole new and visual way. From different font sizes, padding, and margin per device, to reverse column ordering, this is the most powerful mobile site builder for creating perfect responsive websites.
 
 == Installation == 
-Follow these steps to install the plugin:
+
+= Minimum Requirements =
+	
+* WordPress 5.0 or greater
+* PHP version 5.6 or greater
+* MySQL version 5.0 or greater
+
+= We recommend your host supports: =
+
+* PHP version 7.0 or greater
+* MySQL version 5.6 or greater
+* WordPress Memory limit of 64 MB or greater (128 MB or higher is preferred)
+
+= Installation =
+
+First, make sure you have [Elementor Website Builder](https://wordpress.org/plugins/elementor/) plugin installed and activated.
+
+Then follow these steps to install the plugin:
+
 1. Log in to the WordPress Dashboard as an administrator.
 2. Click the Plugins | Add New button.
 3. Search for 'Alpha Google Map For Elementor' in the Search plugins field.
 4. Once you see the plugin listed, click the Install Now button.
 5. Click the Activate button to activate the plugin.
 
-Second method:
- 1. Manually or using sFTP Upload 'plugin-directory' to the '/wp-content/plugins/' directory 
+Manual or using sFTP install:
+ 1. Upload 'plugin-directory' to the '/wp-content/plugins/' directory 
  2. Activate the plugin through the 'Plugins' screen in WordPress 
+
+== Upgrade Notice ==
+
+= 1.0.1 =
+Improving the readme.txt file (Tags and more information)
+
+== Frequently Asked Questions ==
+
+**Can I use Alpha Google Map For Elementor as stand-alone plugin**
+
+No. You need to install Elementor Website Builder first.
+
+== Changelog ==
+
+= 1.0.1 - 2021-06-03 =
+* Tweak: Improving the readme.txt file (Tags and more information)
+* Tweak: Regenerating the .pot file (fixing one text)
+
+= 1.0.0 - 2021-06-02 =
+* Initial Public Release
