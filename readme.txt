@@ -1,6 +1,6 @@
 === Alpha Google Map For Elementor ===
-Author: Ali Ali
-Contributors: Ali Ali
+Author: ali7ali
+Contributors: ali7ali
 Tags: google-map, google, premium, elementor, alpha, page builder, landing page, drag-and-drop
 Requires at least: 5.0
 Tested up to: 5.7
