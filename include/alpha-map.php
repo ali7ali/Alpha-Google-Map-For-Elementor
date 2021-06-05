@@ -134,7 +134,7 @@ final class Alpha_Google_Map_For_Elementor {
 
         $message = sprintf(
             /* translators: 1: Plugin name 2: Required PHP version */
-            esc_html__( '"%1$s" requires PHP version %3$s or greater.', 'alpha-google-map-for-elementor' ),
+            esc_html__( '"%1$s" requires PHP version %2$s or greater.', 'alpha-google-map-for-elementor' ),
             '<strong>' . esc_html__( 'Alpha Google Map For Elementor', 'alpha-google-map-for-elementor' ) . '</strong>',
              self::MINIMUM_PHP_VERSION
         );
