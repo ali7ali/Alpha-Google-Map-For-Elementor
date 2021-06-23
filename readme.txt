@@ -5,7 +5,7 @@ Tags: google-map, google, premium, elementor, alpha, page builder, landing page,
 Requires at least: 5.0
 Tested up to: 5.7
 Requires PHP: 5.6
-Stable tag: 1.0.1
+Stable tag: 1.0.2
 License: GPLv3
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
 
@@ -63,6 +63,16 @@ Improving the readme.txt file (Tags and more information)
 **Can I use Alpha Google Map For Elementor as stand-alone plugin**
 
 No. You need to install Elementor Website Builder first.
+
+== Screenshots ==
+
+1. **Multiple Pins.** Map with multiple pins.
+2. **Pins Change On Active.** Catch customers eyes with this nice feature, and add whatever you want inside the info-box, including timetable or gallery.
+3. **Gallery Inside The Info Box.** Gallery in the info-box with the ability to slide show the gallery with Elementor Lightbox.
+4. **Map Controls.** Easily configure Google Maps controls.
+5. **Live Preview.** See the changes in realtime.
+6. **Pins Controls.** Choose your pins icons, and easily set your pins coordinates.
+7. **Pin Gallery.** Choose and add images to each pin gallery.
 
 == Changelog ==
 

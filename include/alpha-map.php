@@ -15,8 +15,31 @@ final class Alpha_Google_Map_For_Elementor {
         return self::$_instance;
     }
     public function __construct() {
-        add_action( 'plugins_loaded', [ $this, 'on_plugins_loaded' ] );
+        register_activation_hook(__FILE__, array($this, 'activation_check'));
+        //add_action( 'plugins_loaded', [ $this, 'on_plugins_loaded' ] );
+        add_action('admin_init', array($this, 'on_plugins_loaded'));
         add_action('wp_enqueue_scripts', [ $this,'ALPHAMAP_theme_assets'] );
+    }
+
+    public function activation_check()
+    {
+        if ( version_compare( PHP_VERSION, self::MINIMUM_PHP_VERSION, '<')) {
+            add_action( 'admin_notices', [ $this, 'admin_notice_minimum_php_version' ] );
+            $this->deactivate_plugin();
+
+        }
+        if ( ! version_compare( ELEMENTOR_VERSION, self::MINIMUM_ELEMENTOR_VERSION, '>=' ) ) {
+			add_action( 'admin_notices', [ $this, 'admin_notice_missing_main_plugin' ] );
+            $this->deactivate_plugin();
+		}
+    }
+
+    function deactivate_plugin()
+    {
+        deactivate_plugins('alpha-google-map-for-elementor/alpha-google-map-for-elementor.php');
+        if (isset($_GET['activate'])) {
+            unset($_GET['activate']);
+        }
     }
 
     public function i18n() {
@@ -35,23 +58,27 @@ final class Alpha_Google_Map_For_Elementor {
 		// Check if Elementor installed and activated
 		if ( ! did_action( 'elementor/loaded' ) ) {
 			add_action( 'admin_notices', [ $this, 'admin_notice_missing_main_plugin' ] );
+            $this->deactivate_plugin();
 			return false;
 		}
+
+        $elementor = 'elementor/elementor.php';
+        $pathpluginurl = WP_PLUGIN_DIR . '/' . $elementor;
+        $isinstalled = file_exists($pathpluginurl);
 
         // Check for required Elementor version
-		if ( ! version_compare( ELEMENTOR_VERSION, self::MINIMUM_ELEMENTOR_VERSION, '>=' ) ) {
+		if ( !defined('ELEMENTOR_VERSION') || ! version_compare( ELEMENTOR_VERSION, self::MINIMUM_ELEMENTOR_VERSION, '>=' ) ) {
 			add_action( 'admin_notices', [ $this, 'admin_notice_minimum_elementor_version' ] );
+            $this->deactivate_plugin();
 			return false;
-		}
-
-        // Check for required PHP version
-		if ( version_compare( PHP_VERSION, self::MINIMUM_PHP_VERSION, '<' ) ) {
-			add_action( 'admin_notices', [ $this, 'admin_notice_minimum_php_version' ] );
-			return false;
-		}
-        
+		}else if ($isinstalled && is_plugin_active($elementor)) {
+            return true;
+        } else {
+            add_action('admin_notices', [$this, 'admin_notice_missing_main_plugin']);
+            $this->deactivate_plugin();
+            return false;
+        }
         return true;
-
 	}
 
     public function init() {
@@ -69,18 +96,9 @@ final class Alpha_Google_Map_For_Elementor {
         $dir = $upload_dir[ 'basedir' ];
         if ( ! empty($dir ) ) {
                 wp_mkdir_p( $dir . '/alpha-map' );
-                copy(ALPHAMAP_PL_ASSETS . 'img/alpha-pin-black.png', $dir . '/alpha-map/alpha-pin-black.png');
-                copy(ALPHAMAP_PL_ASSETS . 'img/alpha-pin-red.png', $dir . '/alpha-map/alpha-pin-red.png');
+                copy(ALPHAMAP_PL_ASSETS . 'img/alpha-pin.png', $dir . '/alpha-map/alpha-pin.png');
+                copy(ALPHAMAP_PL_ASSETS . 'img/alpha-pin-hover.png', $dir . '/alpha-map/alpha-pin-hover.png');
             }
-//var_dump($upload_dir['baseurl'].'/alpha-map/alpha-pin-black.png');
-    }
-
-    /*
-    * Check Plugins is Installed or not
-    */
-    public function is_plugins_active( $pl_file_path = NULL ){
-        $installed_plugins_list = get_plugins();
-        return isset( $installed_plugins_list[$pl_file_path] );
     }
 
     /**
@@ -90,7 +108,13 @@ final class Alpha_Google_Map_For_Elementor {
     public function admin_notice_missing_main_plugin() {
         if ( isset( $_GET['activate'] ) ) unset( $_GET['activate'] );
         $elementor = 'elementor/elementor.php';
-        if( $this->is_plugins_active( $elementor ) ) {
+        $pathpluginurl = WP_PLUGIN_DIR . '/' . $elementor;
+        $isinstalled = file_exists($pathpluginurl);
+        if($isinstalled && is_plugin_active($elementor))
+            {
+                return;
+            }
+        else if ($isinstalled && !is_plugin_active($elementor)) {
             if( ! current_user_can( 'activate_plugins' ) ) {
                 return;
             }
@@ -108,7 +132,7 @@ final class Alpha_Google_Map_For_Elementor {
             $button_text = esc_html__( 'Install Elementor', 'alpha-google-map-for-elementor' );
         }
         $button = '<p><a href="' . $activation_url . '" class="button-primary">' . $button_text . '</a></p>';
-        printf( '<div class="notice notice-warning is-dismissible"><p>%1$s</p>%2$s</div>', $message, $button );
+        printf( '<div class="notice notice-warning is-dismissible"><p>%1$s</p>%2$s</div>', $message , $button );
     }
 
 
@@ -125,7 +149,6 @@ final class Alpha_Google_Map_For_Elementor {
         );
 
         printf( '<div class="notice notice-warning is-dismissible"><p>%1$s</p></div>', $message );
-
     }
 
     public function admin_notice_minimum_php_version() {
