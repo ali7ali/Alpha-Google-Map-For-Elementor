@@ -8,6 +8,10 @@
  * Text Domain: alpha-google-map-for-elementor
  * Domain Path: /languages
  * License: GPLv3
+ * 
+ * WC tested up to: 6.4.1
+ * Elementor tested up to: 3.6.4
+ * Elementor Pro tested up to: 3.6.5
 */
 
 /* Copyright 2021 Ali Ali (email : ali.abdalhadi.ali@gmail.com) 
