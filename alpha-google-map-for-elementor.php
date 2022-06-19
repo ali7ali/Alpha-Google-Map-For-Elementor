@@ -3,8 +3,8 @@
  * Plugin Name: Alpha Google Map For Elementor
  * Description: Premium Google Map features for WordPress.
  * Author:      Ali Ali
- * Author URI:  https://github.com/Ali-A-Ali
- * Version:     1.0.2
+ * Author URI:  https://github.com/Ali7Ali
+ * Version:     1.0.3
  * Text Domain: alpha-google-map-for-elementor
  * Domain Path: /languages
  * License: GPLv3
@@ -35,7 +35,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit; // Exit if accessed directly.
 }
 
-define( 'ALPHAMAP_VERSION', '1.0.2' );
+define( 'ALPHAMAP_VERSION', '1.0.3' );
 define( 'ALPHAMAP_ADDONS_PL_ROOT', __FILE__ );
 define( 'ALPHAMAP_PL_URL', plugins_url( '/', ALPHAMAP_ADDONS_PL_ROOT ) );
 define( 'ALPHAMAP_PL_PATH', plugin_dir_path( ALPHAMAP_ADDONS_PL_ROOT ) );
