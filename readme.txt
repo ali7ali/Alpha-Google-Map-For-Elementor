@@ -153,8 +153,8 @@ Manual or using sFTP install:
 
 == Upgrade Notice ==
 
-= 1.0.5 =
-Update deprecated functions.
+= 1.0.4 =
+Fixing urgent bug.
 
 == Frequently Asked Questions ==
 
@@ -177,6 +177,7 @@ No. You need to install Elementor Website Builder first.
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 = 1.0.5 - 2023-01-11 =
 * Update deprecated functions.
 
@@ -192,6 +193,8 @@ No. You need to install Elementor Website Builder first.
 * Update deprecated functions.
 
 >>>>>>> 9d50e83 (Fixing incorrect hook usage and replacing deprecated functions.)
+=======
+>>>>>>> 3177626 (Updating to version 1.0.4)
 = 1.0.4 - 2022-07-13 =
 * Applying PHPCS standards and fixing bugs.
 * Fixing incorrect hook usage and replacing deprecated functions.
