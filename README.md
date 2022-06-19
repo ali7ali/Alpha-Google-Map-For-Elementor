@@ -97,7 +97,7 @@ No. You need to install Elementor Website Builder first.
 == Changelog ==
 
 = 1.0.3 - 2022-06-19 =
-* Testing for WordPress 6.0
+* Adding README.md
 
 = 1.0.2 - 2022-05-08 =
 * Testing for WordPress 6.0
