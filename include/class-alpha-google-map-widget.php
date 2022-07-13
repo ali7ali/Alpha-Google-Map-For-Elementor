@@ -1161,11 +1161,17 @@ class Alpha_Google_Map_Widget extends Widget_Base
     }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
     /**
      * Register widget controls.
      */
 =======
 >>>>>>> 7720e1b (Fixing incorrect hook usage and replacing deprecated functions.)
+=======
+    /**
+     * Register widget controls.
+     */
+>>>>>>> 91fbf06 (Applying PHPCS standards and fixing bugs.)
     protected function register_controls()
     {
         $this->start_controls_section(
@@ -2010,6 +2016,9 @@ class Alpha_Google_Map_Widget extends Widget_Base
     }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 91fbf06 (Applying PHPCS standards and fixing bugs.)
     /**
      * Show the count of how many images left in the gallery
      *
@@ -2019,9 +2028,12 @@ class Alpha_Google_Map_Widget extends Widget_Base
      * @return string|string[]|null
      */
     public function add_lightbox_data_to_image_link($link_html, $id)
+<<<<<<< HEAD
 =======
     public function add_count_data_to_image_link($link_html, $id)
 >>>>>>> 7720e1b (Fixing incorrect hook usage and replacing deprecated functions.)
+=======
+>>>>>>> 91fbf06 (Applying PHPCS standards and fixing bugs.)
     {
         $settings      = $this->get_settings_for_display();
         $open_lightbox = isset($settings['open_lightbox']) ? $settings['open_lightbox'] : null;
@@ -2090,11 +2102,15 @@ class Alpha_Google_Map_Widget extends Widget_Base
         );
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
         // get an option
+=======
+        // get an option.
+>>>>>>> 91fbf06 (Applying PHPCS standards and fixing bugs.)
         $key = get_option('alpha_google_api_key');
         if (empty($key) && !empty($settings['alpha_api_key'])) {
-            // add a new option
+            // add a new option.
             add_option('alpha_google_api_key', $settings['alpha_api_key']);
         } elseif (!empty($key) && !empty($settings['alpha_api_key'])) {
             update_option('alpha_google_api_key', $settings['alpha_api_key']);
@@ -2106,10 +2122,14 @@ class Alpha_Google_Map_Widget extends Widget_Base
             <div class="alpha-google-map-title">
                 <?php
 <<<<<<< HEAD
+<<<<<<< HEAD
                 if ('' !== $settings['title']) {
 =======
                 if ('' != $settings['title']) {
 >>>>>>> 7720e1b (Fixing incorrect hook usage and replacing deprecated functions.)
+=======
+                if ('' !== $settings['title']) {
+>>>>>>> 91fbf06 (Applying PHPCS standards and fixing bugs.)
                     $this->add_render_attribute('title', 'class', 'alpha-map-title');
 
                     if (!empty($settings['size'])) {
