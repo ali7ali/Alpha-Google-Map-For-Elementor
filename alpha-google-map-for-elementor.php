@@ -10,9 +10,9 @@
  * Domain Path: /languages
  * License: GPLv3
  *
- * WC tested up to: 7.5.1
- * Elementor tested up to: 3.12.0
- * Elementor Pro tested up to: 3.12.0
+ * WC tested up to: 7.3.0
+ * Elementor tested up to: 3.10.0
+ * Elementor Pro tested up to: 3.10.1
  *
  * @package alpha-google-map-for-elementor
  */

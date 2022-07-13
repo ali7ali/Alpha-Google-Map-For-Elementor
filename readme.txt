@@ -101,7 +101,7 @@ Author: ali7ali
 Contributors: ali7ali
 Tags: google-map, google, premium, elementor, alpha, page builder, landing page, drag-and-drop
 Requires at least: 5.0
-Tested up to: 6.2
+Tested up to: 6.1.1
 Requires PHP: 5.6
 Stable tag: 1.0.5
 License: GPLv3
@@ -176,6 +176,7 @@ No. You need to install Elementor Website Builder first.
 
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 = 1.0.5 - 2023-01-11 =
 * Update deprecated functions.
 
@@ -186,6 +187,11 @@ No. You need to install Elementor Website Builder first.
 * Update deprecated functions.
 
 >>>>>>> b3f1b3d (Update deprecated functions.)
+=======
+= 1.0.5 - 2023-01-11 =
+* Update deprecated functions.
+
+>>>>>>> 9d50e83 (Fixing incorrect hook usage and replacing deprecated functions.)
 = 1.0.4 - 2022-07-13 =
 * Applying PHPCS standards and fixing bugs.
 * Fixing incorrect hook usage and replacing deprecated functions.
