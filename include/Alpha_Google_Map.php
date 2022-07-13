@@ -36,22 +36,21 @@ class Alpha_Google_Map extends Widget_Base {
 		return array( 'google', 'marker', 'pin' );
 	}
 
-	protected function register_controls() { 
-
+	protected function register_controls() {
 		$this->start_controls_section(
 			'section_header',
-			[
+			array(
 				'label' => __( 'API', 'alpha-google-map-for-elementor' ),
-			]
+			)
 		);
 
 		$this->add_control(
 			'alpha_google_api_key',
-			[
-				'label' => __( 'API Key', 'alpha-google-map-for-elementor' ),
-				'type' => Controls_Manager::TEXT,
+			array(
+				'label'   => __( 'API Key', 'alpha-google-map-for-elementor' ),
+				'type'    => Controls_Manager::TEXT,
 				'default' => __( 'Enter your Google API Key', 'alpha-google-map-for-elementor' ),
-			]
+			)
 		);
 
 		$this->add_control(
@@ -96,16 +95,16 @@ class Alpha_Google_Map extends Widget_Base {
 			)
 		);
 
-		$repeater = new REPEATER();
+		$repeater   = new REPEATER();
 		$upload_dir = wp_upload_dir();
 		$repeater->add_control(
 			'pin_icon',
 			array(
 				'label'   => __( 'Custom Icon', 'alpha-google-map-for-elementor' ),
 				'type'    => Controls_Manager::MEDIA,
-				'default' => [
-					'url' => $upload_dir['baseurl'].'/alpha-map/alpha-pin-black.png',
-				],
+				'default' => array(
+					'url' => $upload_dir['baseurl'] . '/alpha-map/alpha-pin.png',
+				),
 				'dynamic' => array( 'active' => true ),
 			)
 		);
@@ -113,11 +112,11 @@ class Alpha_Google_Map extends Widget_Base {
 		$repeater->add_control(
 			'pin_active_icon',
 			array(
-				'label'   => __( 'Icon On Active Pin', 'alpha-google-map-for-elementor' ),
-				'type'    => Controls_Manager::MEDIA,
-				'default' => [
-					'url' => $upload_dir['baseurl'].'/alpha-map/alpha-pin-red.png',
-				],
+				'label'       => __( 'Icon On Active Pin', 'alpha-google-map-for-elementor' ),
+				'type'        => Controls_Manager::MEDIA,
+				'default'     => array(
+					'url' => $upload_dir['baseurl'] . '/alpha-map/alpha-pin-hover.png',
+				),
 				'dynamic'     => array( 'active' => true ),
 				'label_block' => true,
 			)
@@ -212,7 +211,7 @@ class Alpha_Google_Map extends Widget_Base {
 					'map_longitude' => '-0.12479706299020504',
 					'pin_title'     => __( 'Alpha Google Maps', 'alpha-google-map-for-elementor' ),
 					'pin_desc'      => __( 'Add an optional description to your map pin', 'alpha-google-map-for-elementor' ),
-					'pin_time_desc'      => __( 'Add a time table for the location pin', 'alpha-google-map-for-elementor' ),
+					'pin_time_desc' => __( 'Add a time table for the location pin', 'alpha-google-map-for-elementor' ),
 				),
 				'fields'      => $repeater->get_controls(),
 				'title_field' => '{{{ pin_title }}}',
@@ -675,113 +674,113 @@ class Alpha_Google_Map extends Widget_Base {
 		// Map Title Controls
 		$this->start_controls_section(
 			'section_title',
-			[
+			array(
 				'label' => __( 'Map Title', 'alpha-google-map-for-elementor' ),
-			]
+			)
 		);
 
 		$this->add_control(
 			'title',
-			[
-				'label' => __( 'Map Title', 'alpha-google-map-for-elementor' ),
-				'type' => Controls_Manager::TEXTAREA,
-				'dynamic' => [
+			array(
+				'label'       => __( 'Map Title', 'alpha-google-map-for-elementor' ),
+				'type'        => Controls_Manager::TEXTAREA,
+				'dynamic'     => array(
 					'active' => true,
-				],
+				),
 				'placeholder' => __( 'Enter your title', 'alpha-google-map-for-elementor' ),
-				'default' => __( 'Add Your Title Text Here', 'alpha-google-map-for-elementor' ),
-			]
+				'default'     => __( 'Add Your Title Text Here', 'alpha-google-map-for-elementor' ),
+			)
 		);
 
 		$this->add_control(
 			'link',
-			[
-				'label' => __( 'Link', 'alpha-google-map-for-elementor' ),
-				'type' => Controls_Manager::URL,
-				'dynamic' => [
+			array(
+				'label'     => __( 'Link', 'alpha-google-map-for-elementor' ),
+				'type'      => Controls_Manager::URL,
+				'dynamic'   => array(
 					'active' => true,
-				],
-				'default' => [
+				),
+				'default'   => array(
 					'url' => '',
-				],
+				),
 				'separator' => 'before',
-			]
+			)
 		);
 
 		$this->add_control(
 			'size',
-			[
-				'label' => __( 'Size', 'alpha-google-map-for-elementor' ),
-				'type' => Controls_Manager::SELECT,
+			array(
+				'label'   => __( 'Size', 'alpha-google-map-for-elementor' ),
+				'type'    => Controls_Manager::SELECT,
 				'default' => 'default',
-				'options' => [
+				'options' => array(
 					'default' => __( 'Default', 'alpha-google-map-for-elementor' ),
-					'small' => __( 'Small', 'alpha-google-map-for-elementor' ),
-					'medium' => __( 'Medium', 'alpha-google-map-for-elementor' ),
-					'large' => __( 'Large', 'alpha-google-map-for-elementor' ),
-					'xl' => __( 'XL', 'alpha-google-map-for-elementor' ),
-					'xxl' => __( 'XXL', 'alpha-google-map-for-elementor' ),
-				],
-			]
+					'small'   => __( 'Small', 'alpha-google-map-for-elementor' ),
+					'medium'  => __( 'Medium', 'alpha-google-map-for-elementor' ),
+					'large'   => __( 'Large', 'alpha-google-map-for-elementor' ),
+					'xl'      => __( 'XL', 'alpha-google-map-for-elementor' ),
+					'xxl'     => __( 'XXL', 'alpha-google-map-for-elementor' ),
+				),
+			)
 		);
 
 		$this->add_control(
 			'header_size',
-			[
-				'label' => __( 'HTML Tag', 'alpha-google-map-for-elementor' ),
-				'type' => Controls_Manager::SELECT,
-				'options' => [
-					'h1' => 'H1',
-					'h2' => 'H2',
-					'h3' => 'H3',
-					'h4' => 'H4',
-					'h5' => 'H5',
-					'h6' => 'H6',
-					'div' => 'div',
+			array(
+				'label'   => __( 'HTML Tag', 'alpha-google-map-for-elementor' ),
+				'type'    => Controls_Manager::SELECT,
+				'options' => array(
+					'h1'   => 'H1',
+					'h2'   => 'H2',
+					'h3'   => 'H3',
+					'h4'   => 'H4',
+					'h5'   => 'H5',
+					'h6'   => 'H6',
+					'div'  => 'div',
 					'span' => 'span',
-					'p' => 'p',
-				],
+					'p'    => 'p',
+				),
 				'default' => 'h2',
-			]
+			)
 		);
 
 		$this->add_responsive_control(
 			'align',
-			[
-				'label' => __( 'Alignment', 'alpha-google-map-for-elementor' ),
-				'type' => Controls_Manager::CHOOSE,
-				'options' => [
-					'left' => [
+			array(
+				'label'     => __( 'Alignment', 'alpha-google-map-for-elementor' ),
+				'type'      => Controls_Manager::CHOOSE,
+				'options'   => array(
+					'left'    => array(
 						'title' => __( 'Left', 'alpha-google-map-for-elementor' ),
-						'icon' => 'eicon-text-align-left',
-					],
-					'center' => [
+						'icon'  => 'eicon-text-align-left',
+					),
+					'center'  => array(
 						'title' => __( 'Center', 'alpha-google-map-for-elementor' ),
-						'icon' => 'eicon-text-align-center',
-					],
-					'right' => [
+						'icon'  => 'eicon-text-align-center',
+					),
+					'right'   => array(
 						'title' => __( 'Right', 'alpha-google-map-for-elementor' ),
-						'icon' => 'eicon-text-align-right',
-					],
-					'justify' => [
+						'icon'  => 'eicon-text-align-right',
+					),
+					'justify' => array(
 						'title' => __( 'Justified', 'alpha-google-map-for-elementor' ),
-						'icon' => 'eicon-text-align-justify',
-					],
-				],
-				'default' => '',
-				'selectors' => [
+						'icon'  => 'eicon-text-align-justify',
+					),
+				),
+				'default'   => '',
+				'selectors' => array(
 					'{{WRAPPER}}' => 'text-align: {{VALUE}};',
-				],
-			]
+				),
+			)
 		);
 
 		$this->add_control(
 			'view',
-			[
-				'label' => __( 'View', 'alpha-google-map-for-elementor' ),
-				'type' => Controls_Manager::HIDDEN,
+			array(
+				'label'   => __( 'View', 'alpha-google-map-for-elementor' ),
+				'type'    => Controls_Manager::HIDDEN,
 				'default' => 'traditional',
-			]
+			)
 		);
 
 		$this->end_controls_section();
@@ -789,43 +788,43 @@ class Alpha_Google_Map extends Widget_Base {
 		// Map Title Style
 		$this->start_controls_section(
 			'section_title_style',
-			[
+			array(
 				'label' => __( 'Map Title', 'alpha-google-map-for-elementor' ),
-				'tab' => Controls_Manager::TAB_STYLE,
-			]
+				'tab'   => Controls_Manager::TAB_STYLE,
+			)
 		);
 
 		$this->add_control(
 			'title_color',
-			[
-				'label' => __( 'Text Color', 'alpha-google-map-for-elementor' ),
-				'type' => Controls_Manager::COLOR,
-				'global' => [
+			array(
+				'label'     => __( 'Text Color', 'alpha-google-map-for-elementor' ),
+				'type'      => Controls_Manager::COLOR,
+				'global'    => array(
 					'default' => Global_Colors::COLOR_PRIMARY,
-				],
-				'selectors' => [
+				),
+				'selectors' => array(
 					'{{WRAPPER}}  .alpha-map-title' => 'color: {{VALUE}};',
-				],
-			]
+				),
+			)
 		);
 
 		$this->add_group_control(
 			Group_Control_Typography::get_type(),
-			[
-				'name' => 'typography',
-				'global' => [
+			array(
+				'name'     => 'typography',
+				'global'   => array(
 					'default' => Global_Typography::TYPOGRAPHY_PRIMARY,
-				],
+				),
 				'selector' => '{{WRAPPER}} .alpha-map-title',
-			]
+			)
 		);
 
 		$this->add_group_control(
 			Group_Control_Text_Shadow::get_type(),
-			[
-				'name' => 'text_shadow',
+			array(
+				'name'     => 'text_shadow',
 				'selector' => '{{WRAPPER}}  .alpha-map-title',
-			]
+			)
 		);
 
 		$this->add_responsive_control(
@@ -853,11 +852,10 @@ class Alpha_Google_Map extends Widget_Base {
 		);
 
 		$this->end_controls_section();
-
 	}
 
 	public function add_count_data_to_image_link( $link_html, $id ) {
-		$settings = $this->get_settings_for_display();
+		$settings      = $this->get_settings_for_display();
 		$open_lightbox = isset( $settings['open_lightbox'] ) ? $settings['open_lightbox'] : null;
 
 		if ( Plugin::$instance->editor->is_edit_mode() ) {
@@ -869,7 +867,6 @@ class Alpha_Google_Map extends Widget_Base {
 	}
 
 	protected function render() {
-
 		$settings = $this->get_settings_for_display();
 
 		$map_pins = $settings['alpha_map_pins'];
@@ -890,7 +887,6 @@ class Alpha_Google_Map extends Widget_Base {
 
 		$hover_close = 'yes' === $settings['alpha_map_marker_mouse_out'] ? 'true' : 'false';
 
-
 		$locationlat = ! empty( $settings['alpha_location_lat'] ) ? $settings['alpha_location_lat'] : 18.591212;
 
 		$locationlong = ! empty( $settings['alpha_location_long'] ) ? $settings['alpha_location_long'] : 73.741261;
@@ -901,8 +897,8 @@ class Alpha_Google_Map extends Widget_Base {
 			'zoom'              => $settings['alpha_map_zoom']['size'],
 			'maptype'           => $settings['alpha_map_type'],
 			'streetViewControl' => $street_view,
-			'locationlat'         => $locationlat,
-			'locationlong'        => $locationlong,
+			'locationlat'       => $locationlat,
+			'locationlong'      => $locationlong,
 			'scrollwheel'       => $scroll_wheel,
 			'fullScreen'        => $full_screen,
 			'zoomControl'       => $zoom_control,
@@ -922,19 +918,17 @@ class Alpha_Google_Map extends Widget_Base {
 		);
 
 		// get an option
-        $key = get_option('alpha_google_api_key');
-		if(empty($key) && ! empty( $settings['alpha_api_key'] )){
+		$key = get_option( 'alpha_google_api_key' );
+		if ( empty( $key ) && ! empty( $settings['alpha_api_key'] ) ) {
 			// add a new option
-		add_option('alpha_google_api_key', $settings['alpha_api_key']);}
-		else if (!empty($key) && ! empty( $settings['alpha_api_key'] )) {
-			update_option('alpha_google_api_key', $settings['alpha_api_key']);}
+			add_option( 'alpha_google_api_key', $settings['alpha_api_key'] );} elseif ( ! empty( $key ) && ! empty( $settings['alpha_api_key'] ) ) {
+			update_option( 'alpha_google_api_key', $settings['alpha_api_key'] );}
 
-
-		?>
+			?>
 	<div class="alpha-map-container" id="alpha-map-container">
 		<div class="alpha-google-map-title">
-		<?php	if ( '' != $settings['title'] ) {
-
+		<?php
+		if ( '' != $settings['title'] ) {
 			$this->add_render_attribute( 'title', 'class', 'alpha-map-title' );
 
 			if ( ! empty( $settings['size'] ) ) {
@@ -954,25 +948,25 @@ class Alpha_Google_Map extends Widget_Base {
 			$title_html = sprintf( '<%1$s %2$s>%3$s</%1$s>', Utils::validate_html_tag( $settings['header_size'] ), $this->get_render_attribute_string( 'title' ), $title );
 
 			echo $title_html;
-		}?>
+		}
+		?>
 		</div>
-	<?php if ( count( $map_pins ) ) { ?>
+		<?php if ( count( $map_pins ) ) { ?>
 			<div <?php echo wp_kses_post( $this->get_render_attribute_string( 'style_wrapper' ) ); ?>>
 			<?php
 			foreach ( $map_pins as $index => $pin ) {
-
 				$key = 'map_marker_' . $index;
 
 				$this->add_render_attribute(
 					$key,
 					array(
-						'class'          => 'alpha-pin',
-						'data-lng'       => $pin['map_longitude'],
-						'data-lat'       => $pin['map_latitude'],
-						'data-icon'      => $pin['pin_icon']['url'],
+						'class'            => 'alpha-pin',
+						'data-lng'         => $pin['map_longitude'],
+						'data-lat'         => $pin['map_latitude'],
+						'data-icon'        => $pin['pin_icon']['url'],
 						'data-icon-active' => $pin['pin_active_icon']['url'],
-						'data-icon-size' => $pin['pin_icon_size']['size'],
-						'data-max-width' => $marker_width,
+						'data-icon-size'   => $pin['pin_icon_size']['size'],
+						'data-max-width'   => $marker_width,
 					)
 				);
 
@@ -980,9 +974,9 @@ class Alpha_Google_Map extends Widget_Base {
 					$this->add_render_attribute( $key, 'data-id', esc_attr( $pin['custom_id'] ) );
 				}
 
-				$ids = wp_list_pluck( $pin['pin_desc_gallery'], 'id' );
-				$count = count($ids);
-				$this->add_render_attribute( 'shortcode' .  $index, 'ids', implode( ',', $ids ) );
+				$ids   = wp_list_pluck( $pin['pin_desc_gallery'], 'id' );
+				$count = count( $ids );
+				$this->add_render_attribute( 'shortcode' . $index, 'ids', implode( ',', $ids ) );
 
 				?>
 				<div <?php echo wp_kses_post( $this->get_render_attribute_string( $key ) ); ?>>
@@ -992,12 +986,12 @@ class Alpha_Google_Map extends Widget_Base {
 							<div class='alpha-map-info-desc'><?php echo wp_kses_post( $pin['pin_desc'] ); ?></div>
 							<div class='alpha-map-info-time-desc'><?php echo wp_kses_post( $pin['pin_time_desc'] ); ?></div>
 							<?php if ( ! empty( $pin['pin_desc_gallery'] ) ) : ?>
-							<div class="alpha-image-gallery" <?php echo 'data-count='.abs($count-4);?>>
-							<?php 
-							add_filter( 'wp_get_attachment_link', [ $this, 'add_lightbox_data_to_image_link' ], 10, 2 );
-							echo do_shortcode( '[gallery link="file"  ' . $this->get_render_attribute_string( 'shortcode' .  $index ) . ']' );
-							remove_filter( 'wp_get_attachment_link', [ $this, 'add_lightbox_data_to_image_link' ] );
-							?>
+							<div class="alpha-image-gallery" <?php echo 'data-count=' . abs( $count - 4 ); ?>>
+								<?php
+								add_filter( 'wp_get_attachment_link', array( $this, 'add_lightbox_data_to_image_link' ), 10, 2 );
+								echo do_shortcode( '[gallery link="file"  ' . $this->get_render_attribute_string( 'shortcode' . $index ) . ']' );
+								remove_filter( 'wp_get_attachment_link', array( $this, 'add_lightbox_data_to_image_link' ) );
+								?>
 							</div>
 							<?php endif; ?>
 						</div>
@@ -1013,5 +1007,4 @@ class Alpha_Google_Map extends Widget_Base {
 	</div>
 		<?php
 	}
-	// TODO Implement _content_template
 }
