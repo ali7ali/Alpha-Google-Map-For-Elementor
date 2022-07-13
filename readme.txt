@@ -55,8 +55,8 @@ Manual or using sFTP install:
 
 == Upgrade Notice ==
 
-= 1.0.3 =
-small changes not affecting the functionality.
+= 1.0.4 =
+Fixing urgent bug.
 
 == Frequently Asked Questions ==
 
@@ -75,6 +75,10 @@ No. You need to install Elementor Website Builder first.
 7. **Pin Gallery.** Choose and add images to each pin gallery.
 
 == Changelog ==
+
+= 1.0.4 - 2022-07-13 =
+* Applying PHPCS standards and fixing bugs.
+* Fixing incorrect hook usage and replacing deprecated functions.
 
 = 1.0.3 - 2022-06-19 =
 * Adding README.md
