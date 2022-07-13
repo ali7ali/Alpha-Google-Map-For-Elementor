@@ -39,7 +39,7 @@ if (!defined('ABSPATH')) {
     exit; // Exit if accessed directly.
 }
 
-define('ALPHAMAP_VERSION', '1.0.3');
+define('ALPHAMAP_VERSION', '1.0.4');
 define('ALPHAMAP_ADDONS_PL_ROOT', __FILE__);
 define('ALPHAMAP_PL_URL', plugins_url('/', ALPHAMAP_ADDONS_PL_ROOT));
 define('ALPHAMAP_PL_PATH', plugin_dir_path(ALPHAMAP_ADDONS_PL_ROOT));
