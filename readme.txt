@@ -81,7 +81,6 @@ No. You need to install Elementor Website Builder first.
 * Fixing incorrect hook usage and replacing deprecated functions.
 
 = 1.0.3 - 2022-06-19 =
-
 * Adding README.md
 
 = 1.0.2 - 2022-05-08 =
