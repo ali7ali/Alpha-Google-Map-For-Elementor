@@ -10,9 +10,9 @@
  * Domain Path: /languages
  * License: GPLv3
  *
- * WC tested up to: 7.5.1
- * Elementor tested up to: 3.12.0
- * Elementor Pro tested up to: 3.12.0
+ * WC tested up to: 6.4.1
+ * Elementor tested up to: 3.6.4
+ * Elementor Pro tested up to: 3.6.5
  *
  * @package alpha-google-map-for-elementor
  */
@@ -39,13 +39,12 @@ if (!defined('ABSPATH')) {
     exit; // Exit if accessed directly.
 }
 
-define('ALPHAMAP_VERSION', '1.0.5');
+define('ALPHAMAP_VERSION', '1.0.3');
 define('ALPHAMAP_ADDONS_PL_ROOT', __FILE__);
 define('ALPHAMAP_PL_URL', plugins_url('/', ALPHAMAP_ADDONS_PL_ROOT));
 define('ALPHAMAP_PL_PATH', plugin_dir_path(ALPHAMAP_ADDONS_PL_ROOT));
 define('ALPHAMAP_PL_ASSETS', trailingslashit(ALPHAMAP_PL_URL . 'assets'));
 define('ALPHAMAP_PL_INCLUDE', trailingslashit(ALPHAMAP_PL_PATH . 'include'));
 define('ALPHAMAP_PLUGIN_BASE', plugin_basename(ALPHAMAP_ADDONS_PL_ROOT));
-
 // Required File.
 require ALPHAMAP_PL_INCLUDE . '/class-alpha-google-map.php';
