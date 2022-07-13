@@ -1067,9 +1067,13 @@ class Alpha_Google_Map_Widget extends Widget_Base
 =======
 <?php
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 =======
 >>>>>>> a82047b (Applying PHPCS standards and fixing bugs.)
+=======
+
+>>>>>>> 7720e1b (Fixing incorrect hook usage and replacing deprecated functions.)
 /**
  * Alpha Google Map Widget.
  *
@@ -1092,12 +1096,17 @@ use Elementor\Group_Control_Typography;
 use Elementor\Group_Control_Box_Shadow;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 if (!defined('ABSPATH')) {
     exit; // If this file is called directly, abort.
 =======
 if ( ! defined( 'ABSPATH' ) ) {
 	exit; // If this file is called directly, abort.
 >>>>>>> a82047b (Applying PHPCS standards and fixing bugs.)
+=======
+if (!defined('ABSPATH')) {
+    exit; // If this file is called directly, abort.
+>>>>>>> 7720e1b (Fixing incorrect hook usage and replacing deprecated functions.)
 }
 
 /**
@@ -1106,6 +1115,9 @@ if ( ! defined( 'ABSPATH' ) ) {
  * @package Elementor
  */
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 7720e1b (Fixing incorrect hook usage and replacing deprecated functions.)
 class Alpha_Google_Map_Widget extends Widget_Base
 {
     /**
@@ -1148,14 +1160,18 @@ class Alpha_Google_Map_Widget extends Widget_Base
         return array('google', 'marker', 'pin');
     }
 
+<<<<<<< HEAD
     /**
      * Register widget controls.
      */
+=======
+>>>>>>> 7720e1b (Fixing incorrect hook usage and replacing deprecated functions.)
     protected function register_controls()
     {
         $this->start_controls_section(
             'section_header',
             array(
+<<<<<<< HEAD
                 'label' => __('Map Window Location', 'alpha-google-map-for-elementor'),
             )
         );
@@ -1177,6 +1193,20 @@ class Alpha_Google_Map_Widget extends Widget_Base
                 ]
             );
         }
+=======
+                'label' => __('API', 'alpha-google-map-for-elementor'),
+            )
+        );
+
+        $this->add_control(
+            'alpha_google_api_key',
+            array(
+                'label'   => __('API Key', 'alpha-google-map-for-elementor'),
+                'type'    => Controls_Manager::TEXT,
+                'default' => __('Enter your Google API Key', 'alpha-google-map-for-elementor'),
+            )
+        );
+>>>>>>> 7720e1b (Fixing incorrect hook usage and replacing deprecated functions.)
 
         $this->add_control(
             'alpha_location_lat',
@@ -1979,6 +2009,7 @@ class Alpha_Google_Map_Widget extends Widget_Base
         $this->end_controls_section();
     }
 
+<<<<<<< HEAD
     /**
      * Show the count of how many images left in the gallery
      *
@@ -1988,6 +2019,9 @@ class Alpha_Google_Map_Widget extends Widget_Base
      * @return string|string[]|null
      */
     public function add_lightbox_data_to_image_link($link_html, $id)
+=======
+    public function add_count_data_to_image_link($link_html, $id)
+>>>>>>> 7720e1b (Fixing incorrect hook usage and replacing deprecated functions.)
     {
         $settings      = $this->get_settings_for_display();
         $open_lightbox = isset($settings['open_lightbox']) ? $settings['open_lightbox'] : null;
@@ -2055,11 +2089,27 @@ class Alpha_Google_Map_Widget extends Widget_Base
             )
         );
 
+<<<<<<< HEAD
+=======
+        // get an option
+        $key = get_option('alpha_google_api_key');
+        if (empty($key) && !empty($settings['alpha_api_key'])) {
+            // add a new option
+            add_option('alpha_google_api_key', $settings['alpha_api_key']);
+        } elseif (!empty($key) && !empty($settings['alpha_api_key'])) {
+            update_option('alpha_google_api_key', $settings['alpha_api_key']);
+        }
+
+>>>>>>> 7720e1b (Fixing incorrect hook usage and replacing deprecated functions.)
 ?>
         <div class="alpha-map-container" id="alpha-map-container">
             <div class="alpha-google-map-title">
                 <?php
+<<<<<<< HEAD
                 if ('' !== $settings['title']) {
+=======
+                if ('' != $settings['title']) {
+>>>>>>> 7720e1b (Fixing incorrect hook usage and replacing deprecated functions.)
                     $this->add_render_attribute('title', 'class', 'alpha-map-title');
 
                     if (!empty($settings['size'])) {
@@ -2138,6 +2188,7 @@ class Alpha_Google_Map_Widget extends Widget_Base
         </div>
 <?php
     }
+<<<<<<< HEAD
 =======
 class Alpha_Google_Map_Widget extends Widget_Base {
 	/**
@@ -3162,5 +3213,7 @@ class Alpha_Google_Map_Widget extends Widget_Base {
 		<?php
 	}
 >>>>>>> a82047b (Applying PHPCS standards and fixing bugs.)
+=======
+>>>>>>> 7720e1b (Fixing incorrect hook usage and replacing deprecated functions.)
 }
 >>>>>>> b5407a4 (Applying PHPCS standards and fixing bugs.)

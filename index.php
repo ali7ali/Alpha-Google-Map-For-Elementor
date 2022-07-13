@@ -1,9 +1,3 @@
 <?php
-
-/**
- * Direct access security.
- *
- * @package alpha-google-map-for-elementor
- *  */
-
+// Direct access security
 wp_die();
