@@ -30,7 +30,7 @@ jQuery(window).on("elementor/frontend/init", function () {
                 var args = {
                     zoom: settings["zoom"],
                     mapTypeId: settings["maptype"],
-                    center: { lat: locationLat, lng: locationLong },
+                    center: {lat: locationLat, lng: locationLong},
                     scrollwheel: scrollwheel,
                     streetViewControl: streetViewControl,
                     fullscreenControl: fullscreenControl,
@@ -59,7 +59,7 @@ jQuery(window).on("elementor/frontend/init", function () {
                 var latlng = new google.maps.LatLng(
                     pin.attr("data-lat"),
                     pin.attr("data-lng")
-                ),
+                    ),
                     icon_img = pin.attr("data-icon"),
                     icon_hover_img = pin.attr("data-icon-active"),
                     maxWidth = pin.attr("data-max-width"),
@@ -71,8 +71,7 @@ jQuery(window).on("elementor/frontend/init", function () {
                         url: pin.attr("data-icon")
                     };
 
-                    if(icon_hover_img != "")
-                    {
+                    if (icon_hover_img != "") {
                         icon.hover = pin.attr("data-icon-active");
                     }
 
@@ -83,7 +82,6 @@ jQuery(window).on("elementor/frontend/init", function () {
                         icon.anchor = new google.maps.Point(iconSize / 2, iconSize);
                     }
                 }
-
 
 
                 // create marker
@@ -97,7 +95,7 @@ jQuery(window).on("elementor/frontend/init", function () {
                 // add to array
                 map.markers.push(marker);
 
-                alphaMapMarkers.push(marker); 
+                alphaMapMarkers.push(marker);
 
                 // if marker contains HTML, add it to an infoWindow
                 if (
@@ -116,18 +114,18 @@ jQuery(window).on("elementor/frontend/init", function () {
                     }
                     if (hoverOpen) {
                         google.maps.event.addListener(marker, "mouseover", function () {
-                        marker.setIcon(icon_onHover);
-                        infowindow.open(map, marker);
+                            marker.setIcon(icon_onHover);
+                            infowindow.open(map, marker);
                         });
-                    if (hoverClose) {
-                        google.maps.event.addListener(marker, "mouseout", function () {
-                        marker.setIcon(icon_url);
-                        infowindow.close(map, marker);
-                        });
-                    }
+                        if (hoverClose) {
+                            google.maps.event.addListener(marker, "mouseout", function () {
+                                marker.setIcon(icon_url);
+                                infowindow.close(map, marker);
+                            });
+                        }
                     }
                     // show info window when marker is clicked
-                    google.maps.event.addListener(marker, "click", function () {   
+                    google.maps.event.addListener(marker, "click", function () {
                         if (selectedMarker) {
                             selectedMarker.setIcon(icon_url);
                         }
@@ -135,21 +133,22 @@ jQuery(window).on("elementor/frontend/init", function () {
                         selectedMarker = marker;
                         infowindow.open(map, marker);
                     });
-                    google.maps.event.addListener(map, "click", function(event) {
+                    google.maps.event.addListener(map, "click", function (event) {
                         if (selectedMarker) {
                             selectedMarker.setIcon(icon_url);
                         }
                         infowindow.close();
                     });
                 }
-            }   
+            }
         }
     );
+});
 
-    // gallery script
-    jQuery('.alpha-image-gallery').each(function(){
-        var count = jQuery( this ).attr("data-count");  
-        jQuery(this).find( "figure:nth-child(4)" ).append('<div style="position: absolute; color: #fff; top: 50%; left: 50%; transform: translate(-50%, -50%); font-size: 16px; font-weight: 600; white-space: nowrap;">' + count + ' more </div>');
+jQuery(function () {
+    $("body").click(function (e) {
+        let count = jQuery('.alpha-image-gallery').attr("data-count");
+        count = parseInt(count);
+        jQuery('.alpha-image-gallery').find("figure:nth-child(4)").append('<div style="position: absolute; color: #fff; top: 50%; left: 50%; transform: translate(-50%, -50%); font-size: 16px; font-weight: 600; white-space: nowrap;">' + count + ' more </div>');
     });
-    
 });
