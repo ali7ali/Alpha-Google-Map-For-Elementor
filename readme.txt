@@ -77,7 +77,6 @@ No. You need to install Elementor Website Builder first.
 == Changelog ==
 
 = 1.0.4 - 2022-07-13 =
-
 * Applying PHPCS standards and fixing bugs.
 * Fixing incorrect hook usage and replacing deprecated functions.
 
