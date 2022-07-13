@@ -5,7 +5,7 @@ Tags: google-map, google, premium, elementor, alpha, page builder, landing page,
 Requires at least: 5.0
 Tested up to: 6.0
 Requires PHP: 5.6
-Stable tag: 1.0.3
+Stable tag: 1.0.4
 License: GPLv3
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
 
@@ -77,6 +77,10 @@ No. You need to install Elementor Website Builder first.
 == Changelog ==
 
 = 1.0.4 - 2022-07-13 =
+<<<<<<< HEAD
+=======
+
+>>>>>>> dc52cda (Updating to version 1.0.4)
 * Applying PHPCS standards and fixing bugs.
 * Fixing incorrect hook usage and replacing deprecated functions.
 
