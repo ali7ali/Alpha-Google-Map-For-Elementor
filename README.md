@@ -23,7 +23,7 @@ Tested up to: 6.0
 
 Requires PHP: 5.6
 
-Stable tag: 1.0.3
+Stable tag: 1.0.4
 
 License: GPLv3
 
