@@ -15,7 +15,7 @@ if (!defined('ABSPATH')) {
  */
 final class Alpha_Google_Map
 {
-    const MINIMUM_ELEMENTOR_VERSION = '2.5.0';
+    const MINIMUM_ELEMENTOR_VERSION = '3.0.0';
     const MINIMUM_PHP_VERSION       = '5.6';
     /**
      * Self instance.
@@ -235,9 +235,9 @@ final class Alpha_Google_Map
         wp_enqueue_script('alphamap', ALPHAMAP_PL_ASSETS . 'js/alpha-map.js', array('jquery', 'alpha-api-js'), ALPHAMAP_VERSION, true);
 
         // get an option.
-        $key = get_option('alpha_google_api_key');
+        $api_key = get_option('elementor_google_maps_api_key');
 
-        $api = sprintf('https://maps.googleapis.com/maps/api/js?key=%1$s&language=en', $key);
+        $api = sprintf('https://maps.googleapis.com/maps/api/js?key=%1$s&language=en&callback=initMap', $api_key);
         wp_enqueue_script(
             'alpha-api-js',
             $api,
