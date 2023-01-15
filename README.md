@@ -54,7 +54,7 @@ Elementor Website Builder comes with an exclusive toolset, that lets you create 
 
 = We recommend your host supports: =
 
-- PHP version 7.0 or greater
+- PHP version 7.4 or greater
 - MySQL version 5.6 or greater
 - WordPress Memory limit of 64 MB or greater (128 MB or higher is preferred)
 
@@ -77,8 +77,8 @@ Manual or using sFTP install:
 
 == Upgrade Notice ==
 
-= 1.0.4 =
-Fixing urgent bug.
+= 1.0.5 =
+Update deprecated functions.
 
 == Frequently Asked Questions ==
 
@@ -97,6 +97,10 @@ No. You need to install Elementor Website Builder first.
 7. **Pin Gallery.** Choose and add images to each pin gallery.
 
 == Changelog ==
+
+= 1.0.5 - 2023-01-11 =
+
+- Update deprecated functions.
 
 = 1.0.4 - 2022-07-13 =
 

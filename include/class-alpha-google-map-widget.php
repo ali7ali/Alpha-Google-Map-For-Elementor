@@ -1156,18 +1156,27 @@ class Alpha_Google_Map_Widget extends Widget_Base
         $this->start_controls_section(
             'section_header',
             array(
-                'label' => __('API', 'alpha-google-map-for-elementor'),
+                'label' => __('Map Window Location', 'alpha-google-map-for-elementor'),
             )
         );
 
-        $this->add_control(
-            'alpha_google_api_key',
-            array(
-                'label'   => __('API Key', 'alpha-google-map-for-elementor'),
-                'type'    => Controls_Manager::TEXT,
-                'default' => __('Enter your Google API Key', 'alpha-google-map-for-elementor'),
-            )
-        );
+        $api_key = get_option('elementor_google_maps_api_key');
+        if (!$api_key) {
+            $this->add_control(
+                'api_key_notification',
+                [
+                    'type' => Controls_Manager::RAW_HTML,
+                    'raw' => sprintf(
+                        /* translators: 1: Integration settings link open tag, 2: Create API key link open tag, 3: Link close tag. */
+                        esc_html__('Set your Google Maps API Key in Elementor\'s %1$sIntegrations Settings%3$s page. Create your key %2$shere.%3$s', 'alpha-google-map-for-elementor'),
+                        '<a href="' . Settings::get_url() . '#tab-integrations" target="_blank">',
+                        '<a href="https://developers.google.com/maps/documentation/embed/get-api-key" target="_blank">',
+                        '</a>'
+                    ),
+                    'content_classes' => 'elementor-panel-alert elementor-panel-alert-info',
+                ]
+            );
+        }
 
         $this->add_control(
             'alpha_location_lat',
@@ -2045,15 +2054,6 @@ class Alpha_Google_Map_Widget extends Widget_Base
                 'data-settings' => wp_json_encode($map_settings),
             )
         );
-
-        // get an option.
-        $key = get_option('alpha_google_api_key');
-        if (empty($key) && !empty($settings['alpha_api_key'])) {
-            // add a new option.
-            add_option('alpha_google_api_key', $settings['alpha_api_key']);
-        } elseif (!empty($key) && !empty($settings['alpha_api_key'])) {
-            update_option('alpha_google_api_key', $settings['alpha_api_key']);
-        }
 
 ?>
         <div class="alpha-map-container" id="alpha-map-container">
