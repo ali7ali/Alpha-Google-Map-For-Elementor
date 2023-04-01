@@ -101,7 +101,7 @@ Author: ali7ali
 Contributors: ali7ali
 Tags: google-map, google, premium, elementor, alpha, page builder, landing page, drag-and-drop
 Requires at least: 5.0
-Tested up to: 6.1.1
+Tested up to: 6.2
 Requires PHP: 5.6
 Stable tag: 1.0.5
 License: GPLv3
