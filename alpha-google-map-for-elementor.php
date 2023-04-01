@@ -5,15 +5,7 @@
  * Description: Premium Google Map features for WordPress.
  * Author:      Ali Ali
  * Author URI:  https://github.com/Ali7Ali
-<<<<<<< HEAD
-<<<<<<< HEAD
  * Version:     1.0.5
-=======
- * Version:     1.0.4
->>>>>>> 46232ae (Updating to version 1.0.4)
-=======
- * Version:     1.0.5
->>>>>>> b3f1b3d (Update deprecated functions.)
  * Text Domain: alpha-google-map-for-elementor
  * Domain Path: /languages
  * License: GPLv3

@@ -174,33 +174,9 @@ No. You need to install Elementor Website Builder first.
 
 == Changelog ==
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
 = 1.0.5 - 2023-01-11 =
 * Update deprecated functions.
 
-=======
->>>>>>> 3177626 (Updating to version 1.0.4)
-=======
-= 1.0.5 - 2023-01-11 =
-* Update deprecated functions.
-
->>>>>>> b3f1b3d (Update deprecated functions.)
-=======
-= 1.0.5 - 2023-01-11 =
-* Update deprecated functions.
-
->>>>>>> 9d50e83 (Fixing incorrect hook usage and replacing deprecated functions.)
-=======
->>>>>>> 3177626 (Updating to version 1.0.4)
-=======
-= 1.0.5 - 2023-01-11 =
-* Update deprecated functions.
-
->>>>>>> b3f1b3d (Update deprecated functions.)
 = 1.0.4 - 2022-07-13 =
 * Applying PHPCS standards and fixing bugs.
 * Fixing incorrect hook usage and replacing deprecated functions.
