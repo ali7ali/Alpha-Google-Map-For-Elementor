@@ -19,7 +19,7 @@ Tags: google-map, google, premium, elementor, alpha, page builder, landing page,
 
 Requires at least: 5.0
 
-Tested up to: 6.1.1
+Tested up to: 6.2
 
 Requires PHP: 5.6
 
@@ -54,7 +54,7 @@ Elementor Website Builder comes with an exclusive toolset, that lets you create 
 
 = We recommend your host supports: =
 
-- PHP version 7.0 or greater
+- PHP version 7.4 or greater
 - MySQL version 5.6 or greater
 - WordPress Memory limit of 64 MB or greater (128 MB or higher is preferred)
 
@@ -77,8 +77,8 @@ Manual or using sFTP install:
 
 == Upgrade Notice ==
 
-= 1.0.4 =
-Fixing urgent bug.
+= 1.0.5 =
+Update deprecated functions.
 
 == Frequently Asked Questions ==
 
@@ -98,18 +98,18 @@ No. You need to install Elementor Website Builder first.
 
 == Changelog ==
 
+= 1.0.5 - 2023-01-11 =
+
+- Update deprecated functions.
+
 = 1.0.4 - 2022-07-13 =
 
 - Applying PHPCS standards and fixing bugs.
 - Fixing incorrect hook usage and replacing deprecated functions.
 
 = 1.0.3 - 2022-06-19 =
-<<<<<<< HEAD
 
 - Adding README.md
-=======
-* Adding README.md
->>>>>>> e9e7979 (Fixing incorrect hook usage and replacing deprecated functions.)
 
 = 1.0.2 - 2022-05-08 =
 
