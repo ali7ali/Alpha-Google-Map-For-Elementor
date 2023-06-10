@@ -5,14 +5,12 @@
  * Description: Premium Google Map features for WordPress.
  * Author:      Ali Ali
  * Author URI:  https://github.com/Ali7Ali
- * Version:     1.0.5
+ * Version:     1.0.6
  * Text Domain: alpha-google-map-for-elementor
  * Domain Path: /languages
  * License: GPLv3
  *
- * WC tested up to: 7.5.1
- * Elementor tested up to: 3.12.0
- * Elementor Pro tested up to: 3.12.0
+ * Elementor tested up to: 3.13.4
  *
  * @package alpha-google-map-for-elementor
  */
@@ -39,7 +37,7 @@ if (!defined('ABSPATH')) {
     exit; // Exit if accessed directly.
 }
 
-define('ALPHAMAP_VERSION', '1.0.5');
+define('ALPHAMAP_VERSION', '1.0.6');
 define('ALPHAMAP_ADDONS_PL_ROOT', __FILE__);
 define('ALPHAMAP_PL_URL', plugins_url('/', ALPHAMAP_ADDONS_PL_ROOT));
 define('ALPHAMAP_PL_PATH', plugin_dir_path(ALPHAMAP_ADDONS_PL_ROOT));
