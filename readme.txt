@@ -3,9 +3,9 @@ Author: ali7ali
 Contributors: ali7ali
 Tags: google-map, google, premium, elementor, alpha, page builder, landing page, drag-and-drop
 Requires at least: 5.0
-Tested up to: 6.2
+Tested up to: 6.2.2
 Requires PHP: 5.6
-Stable tag: 1.0.5
+Stable tag: 1.0.6
 License: GPLv3
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
 
@@ -55,7 +55,7 @@ Manual or using sFTP install:
 
 == Upgrade Notice ==
 
-= 1.0.5 =
+= 1.0.6 =
 Update deprecated functions.
 
 == Frequently Asked Questions ==
@@ -75,6 +75,9 @@ No. You need to install Elementor Website Builder first.
 7. **Pin Gallery.** Choose and add images to each pin gallery.
 
 == Changelog ==
+
+= 1.0.6 - 2023-06-10 =
+* Update deprecated functions.
 
 = 1.0.5 - 2023-01-11 =
 * Update deprecated functions.
