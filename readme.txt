@@ -5,14 +5,14 @@ Tags: google-map, google, premium, elementor, alpha, page builder, landing page,
 Requires at least: 5.0
 Tested up to: 6.2.2
 Requires PHP: 5.6
-Stable tag: 1.0.6
+Stable tag: 1.0.7
 License: GPLv3
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
 
 Alpha Google Map For Elementor is a plugin that offers premium Google Map features for WordPress.
 
 == Description ==
-This plugin offers the generally needed google Maps functionality with additional premium features.
+This plugin offers the generally needed Google Maps functionality with additional premium features.
 
 Plugin features 
  * Custom map pins
@@ -22,6 +22,17 @@ Plugin features
  * Responsive Live Editing
 
 Elementor Website  Builder comes with an exclusive toolset, that lets you create a truly responsive website in a whole new and visual way. From different font sizes, padding, and margin per device, to reverse column ordering, this is the most powerful mobile site builder for creating perfect responsive websites.
+
+= Demo =
+Check this widget demo here [here](https://alphatrio.net/alpha-google-map-for-elementor/).
+
+= Contributing and reporting bugs =
+
+You can contribute code to this plugin via GitHub: [https://github.com/ali7ali/Alpha-Google-Map-For-Elementor](https://github.com/ali7ali/Alpha-Google-Map-For-Elementor)
+
+= Support =
+
+Use the WordPress.org forums for community support. If you spot a bug, you can of course log it on [Github](https://github.com/ali7ali/Alpha-Google-Map-For-Elementor/issues/new/choose) instead where we can act upon it more efficiently.
 
 == Installation == 
 
@@ -55,8 +66,8 @@ Manual or using sFTP install:
 
 == Upgrade Notice ==
 
-= 1.0.6 =
-Update deprecated functions.
+= 1.0.7 =
+Minor improvements and adding a demo.
 
 == Frequently Asked Questions ==
 
@@ -75,6 +86,9 @@ No. You need to install Elementor Website Builder first.
 7. **Pin Gallery.** Choose and add images to each pin gallery.
 
 == Changelog ==
+
+= 1.0.7 - 2023-06-23 =
+* Minor improvements and adding a demo.
 
 = 1.0.6 - 2023-06-10 =
 * Update deprecated functions.

@@ -120,12 +120,19 @@ final class Alpha_Google_Map
      */
     public function add_assets()
     {
+        require_once ABSPATH . 'wp-admin/includes/class-wp-filesystem-base.php';
+        require_once ABSPATH . 'wp-admin/includes/class-wp-filesystem-direct.php';
         $upload_dir = wp_upload_dir(null, true);
         $dir        = $upload_dir['basedir'];
         if (!empty($dir)) {
             wp_mkdir_p($dir . '/alpha-map');
-            copy(ALPHAMAP_PL_ASSETS . 'img/alpha-pin.png', $dir . '/alpha-map/alpha-pin.png');
-            copy(ALPHAMAP_PL_ASSETS . 'img/alpha-pin-hover.png', $dir . '/alpha-map/alpha-pin-hover.png');
+            $wp_file_sys = new WP_Filesystem_Direct('direct');
+            if (!$wp_file_sys->exists($dir . '/alpha-map/alpha-pin.png')) {
+                $wp_file_sys->put_contents($dir . '/alpha-map/alpha-pin.png', $wp_file_sys->get_contents(ALPHAMAP_PL_ASSETS . 'img/alpha-pin.png'));
+            }
+            if (!$wp_file_sys->exists($dir . '/alpha-map/alpha-pin-hover.png')) {
+                $wp_file_sys->put_contents($dir . '/alpha-map/alpha-pin-hover.png', $wp_file_sys->get_contents(ALPHAMAP_PL_ASSETS . 'img/alpha-pin-hover.png'));
+            }
         }
     }
 
@@ -237,7 +244,7 @@ final class Alpha_Google_Map
         // get an option.
         $api_key = get_option('elementor_google_maps_api_key');
 
-        $api = sprintf('https://maps.googleapis.com/maps/api/js?key=%1$s&language=en&callback=initMap', $api_key);
+        $api = sprintf('https://maps.googleapis.com/maps/api/js?key=%1$s&language=en&callback=blur', $api_key);
         wp_enqueue_script(
             'alpha-api-js',
             $api,

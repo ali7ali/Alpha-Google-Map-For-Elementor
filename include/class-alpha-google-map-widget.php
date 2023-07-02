@@ -103,6 +103,20 @@ class Alpha_Google_Map_Widget extends Widget_Base
         }
 
         $this->add_control(
+            'check_demo',
+            [
+                'type' => Controls_Manager::RAW_HTML,
+                'raw' => sprintf(
+                    /* translators: 1: Demo link open tag, 2: Link close tag. */
+                    esc_html__('Check this widget demo %1$shere%2$s.', 'alpha-google-map-for-elementor'),
+                    '<a href="https://alphatrio.net/alpha-google-map-for-elementor/" target="_blank">',
+                    '</a>'
+                ),
+                'content_classes' => 'elementor-panel-alert elementor-panel-alert-info',
+            ]
+        );
+
+        $this->add_control(
             'alpha_location_lat',
             array(
                 'label'       => __('Location Latitude', 'alpha-google-map-for-elementor'),
