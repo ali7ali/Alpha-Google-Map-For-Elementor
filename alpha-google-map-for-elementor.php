@@ -11,7 +11,7 @@
  * Domain Path: /languages
  * License: GPLv3
  *
- * Elementor tested up to: 3.14.1
+ * Elementor tested up to: 3.15.1
  *
  * @package alpha-google-map-for-elementor
  */

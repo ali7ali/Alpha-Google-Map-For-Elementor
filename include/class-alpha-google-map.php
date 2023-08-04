@@ -120,6 +120,7 @@ final class Alpha_Google_Map
      */
     public function add_assets()
     {
+        require_once ABSPATH . 'wp-admin/includes/file.php';
         require_once ABSPATH . 'wp-admin/includes/class-wp-filesystem-base.php';
         require_once ABSPATH . 'wp-admin/includes/class-wp-filesystem-direct.php';
         $upload_dir = wp_upload_dir(null, true);
