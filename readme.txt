@@ -67,7 +67,7 @@ Manual or using sFTP install:
 == Upgrade Notice ==
 
 = 1.0.8 =
-Compatiblity for WP 6.3.
+Compatibility for WP 6.3.
 
 == Frequently Asked Questions ==
 
@@ -88,7 +88,7 @@ No. You need to install Elementor Website Builder first.
 == Changelog ==
 
 = 1.0.8 - 2023-08-17 =
-* Compatiblity for WP 6.3.
+* Compatibility for WP 6.3.
 
 = 1.0.7 - 2023-06-23 =
 * Minor improvements and adding a demo.
