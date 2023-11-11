@@ -12,7 +12,7 @@ jQuery(window).on("elementor/frontend/init", function () {
 
             var alphaMapMarkers = [];
 
-            var selectedMarker = null;
+            var selectedMarker = {};
 
             alphaMap = newMap(mapElement, mapSettings, mapStyle);
 
@@ -30,7 +30,7 @@ jQuery(window).on("elementor/frontend/init", function () {
                 var args = {
                     zoom: settings["zoom"],
                     mapTypeId: settings["maptype"],
-                    center: {lat: locationLat, lng: locationLong},
+                    center: { lat: locationLat, lng: locationLong },
                     scrollwheel: scrollwheel,
                     streetViewControl: streetViewControl,
                     fullscreenControl: fullscreenControl,
@@ -47,6 +47,7 @@ jQuery(window).on("elementor/frontend/init", function () {
                 var map = new google.maps.Map(map[0], args);
 
                 map.markers = [];
+                var prev_infowindow = false;
                 // add markers
                 markers.each(function () {
                     add_marker(jQuery(this), map, autoOpen, hoverOpen, hoverClose);
@@ -59,7 +60,7 @@ jQuery(window).on("elementor/frontend/init", function () {
                 var latlng = new google.maps.LatLng(
                     pin.attr("data-lat"),
                     pin.attr("data-lng")
-                    ),
+                ),
                     icon_img = pin.attr("data-icon"),
                     icon_hover_img = pin.attr("data-icon-active"),
                     maxWidth = pin.attr("data-max-width"),
@@ -88,7 +89,8 @@ jQuery(window).on("elementor/frontend/init", function () {
                 var marker = new google.maps.Marker({
                     position: latlng,
                     map: map,
-                    icon: icon
+                    icon: icon,
+                    marker_id: customID
                 });
 
 
@@ -96,6 +98,7 @@ jQuery(window).on("elementor/frontend/init", function () {
                 map.markers.push(marker);
 
                 alphaMapMarkers.push(marker);
+
 
                 // if marker contains HTML, add it to an infoWindow
                 if (
@@ -126,16 +129,19 @@ jQuery(window).on("elementor/frontend/init", function () {
                     }
                     // show info window when marker is clicked
                     google.maps.event.addListener(marker, "click", function () {
-                        if (selectedMarker) {
-                            selectedMarker.setIcon(icon_url);
+                        if (typeof prev_infowindow !== 'undefined' && typeof selectedMarker !== 'undefined' && typeof selectedMarker.marker !== 'undefined') {
+                            selectedMarker.marker.setIcon(selectedMarker.icon);
+                            prev_infowindow.close();
                         }
                         marker.setIcon(icon_onHover);
-                        selectedMarker = marker;
+                        selectedMarker.marker = marker;
+                        selectedMarker.icon = icon_url;
                         infowindow.open(map, marker);
+                        prev_infowindow = infowindow;
                     });
                     google.maps.event.addListener(map, "click", function (event) {
                         if (selectedMarker) {
-                            selectedMarker.setIcon(icon_url);
+                            selectedMarker.marker.setIcon(selectedMarker.icon);
                         }
                         infowindow.close();
                     });

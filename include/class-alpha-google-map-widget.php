@@ -1036,12 +1036,9 @@ class Alpha_Google_Map_Widget extends Widget_Base
                                 'data-icon-active' => $pin['pin_active_icon']['url'],
                                 'data-icon-size'   => $pin['pin_icon_size']['size'],
                                 'data-max-width'   => $marker_width,
+                                'data-id'          => $index,
                             )
                         );
-
-                        if (!empty($pin['custom_id'])) {
-                            $this->add_render_attribute($key, 'data-id', esc_attr($pin['custom_id']));
-                        }
 
                         $ids   = wp_list_pluck($pin['pin_desc_gallery'], 'id');
                         $count = count($ids);
