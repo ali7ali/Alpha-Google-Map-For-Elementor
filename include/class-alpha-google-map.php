@@ -239,8 +239,14 @@ final class Alpha_Google_Map
     public function plugin_js()
     {
         // Script register.
-        wp_enqueue_script('alpha-maps-finder', ALPHAMAP_PL_ASSETS . 'js/pa-maps-finder.js', array('jquery'), ALPHAMAP_VERSION, true);
-        wp_enqueue_script('alphamap', ALPHAMAP_PL_ASSETS . 'js/alpha-map.js', array('jquery', 'alpha-api-js'), ALPHAMAP_VERSION, true);
+        wp_enqueue_script('alpha-maps-finder', ALPHAMAP_PL_ASSETS . 'js/pa-maps-finder.js', array('jquery'), ALPHAMAP_VERSION, array(
+            'in_footer' => true,
+            'strategy'  => 'defer',
+        ));
+        wp_enqueue_script('alphamap', ALPHAMAP_PL_ASSETS . 'js/alpha-map.js', array('jquery', 'alpha-api-js'), ALPHAMAP_VERSION, array(
+            'in_footer' => true,
+            'strategy'  => 'defer',
+        ));
 
         // get an option.
         $api_key = get_option('elementor_google_maps_api_key');
@@ -251,7 +257,10 @@ final class Alpha_Google_Map
             $api,
             array(),
             '1.0.0',
-            false
+            array(
+                'in_footer' => true,
+                'strategy'  => 'defer',
+            )
         );
     }
 
