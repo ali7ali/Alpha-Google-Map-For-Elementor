@@ -1,18 +1,23 @@
 <?php
 
+namespace Elementor_Alpha_Google_Map_Addon;
+
+if (!defined('ABSPATH')) {
+    exit; // If this file is called directly, abort.
+}
+
 /**
  * Alpha Google Map Widget.
  *
- * @package alpha-google-map-for-elementor
  *  */
 
-namespace Elementor;
-
 // Elementor Classes.
+use Elementor\Plugin;
 use Elementor\Widget_Base;
 use Elementor\Controls_Manager;
 use Elementor\Repeater;
 use Elementor\Utils;
+use Elementor\Settings;
 use Elementor\Core\Schemes\Color;
 use Elementor\Core\Schemes\Typography;
 use Elementor\Core\Kits\Documents\Tabs\Global_Colors;
@@ -20,10 +25,8 @@ use Elementor\Core\Kits\Documents\Tabs\Global_Typography;
 use Elementor\Group_Control_Border;
 use Elementor\Group_Control_Typography;
 use Elementor\Group_Control_Box_Shadow;
+use Elementor\Group_Control_Text_Shadow;
 
-if (!defined('ABSPATH')) {
-    exit; // If this file is called directly, abort.
-}
 
 /**
  * Class Alpha_Google_Map_Widget

@@ -152,7 +152,7 @@ jQuery(window).on("elementor/frontend/init", function () {
 });
 
 jQuery(function () {
-    $("body").click(function (e) {
+    jQuery("body").click(function (e) {
         let count = jQuery('.alpha-image-gallery').attr("data-count");
         count = parseInt(count);
         jQuery('.alpha-image-gallery').find("figure:nth-child(4)").append('<div style="position: absolute; color: #fff; top: 50%; left: 50%; transform: translate(-50%, -50%); font-size: 16px; font-weight: 600; white-space: nowrap;">' + count + ' more </div>');
