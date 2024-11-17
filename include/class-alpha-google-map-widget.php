@@ -1,6 +1,6 @@
 <?php
 
-namespace Elementor_Alpha_Google_Map_Addon;
+namespace AlphaGoogleMap;
 
 if (!defined('ABSPATH')) {
     exit; // If this file is called directly, abort.
@@ -40,7 +40,7 @@ class Alpha_Google_Map_Widget extends Widget_Base
      *
      * @return string
      */
-    public function get_name()
+    public function get_name(): string
     {
         return 'alpha-google-map';
     }
@@ -50,7 +50,7 @@ class Alpha_Google_Map_Widget extends Widget_Base
      *
      * @return string|void
      */
-    public function get_title()
+    public function get_title(): string
     {
         return __('Alpha Google Map', 'alpha-google-map-for-elementor');
     }
@@ -60,7 +60,7 @@ class Alpha_Google_Map_Widget extends Widget_Base
      *
      * @return string
      */
-    public function get_icon()
+    public function get_icon(): string
     {
         return 'eicon-google-maps';
     }
@@ -70,7 +70,7 @@ class Alpha_Google_Map_Widget extends Widget_Base
      *
      * @return array
      */
-    public function get_keywords()
+    public function get_keywords(): array
     {
         return array('google', 'marker', 'pin');
     }
@@ -78,7 +78,7 @@ class Alpha_Google_Map_Widget extends Widget_Base
     /**
      * Register widget controls.
      */
-    protected function register_controls()
+    protected function register_controls(): void
     {
         $this->start_controls_section(
             'section_header',
@@ -112,7 +112,7 @@ class Alpha_Google_Map_Widget extends Widget_Base
                 'raw' => sprintf(
                     /* translators: 1: Demo link open tag, 2: Link close tag. */
                     esc_html__('Check this widget demo %1$shere%2$s.', 'alpha-google-map-for-elementor'),
-                    '<a href="https://alphatrio.net/alpha-google-map-for-elementor/" target="_blank">',
+                    '<a href="https://ali-ali.org/project/alpha-google-map-for-elementor/" target="_blank">',
                     '</a>'
                 ),
                 'content_classes' => 'elementor-panel-alert elementor-panel-alert-info',
@@ -414,9 +414,9 @@ class Alpha_Google_Map_Widget extends Widget_Base
             array(
                 'label'     => __('Info Container Closed when Mouse Out', 'alpha-google-map-for-elementor'),
                 'type'      => Controls_Manager::SWITCHER,
-                'condition' => array(
+                'condition' => [
                     'alpha_map_marker_hover_open' => 'yes',
-                ),
+                ],
             )
         );
 
@@ -966,9 +966,9 @@ class Alpha_Google_Map_Widget extends Widget_Base
 
         $hover_close = 'yes' === $settings['alpha_map_marker_mouse_out'] ? 'true' : 'false';
 
-        $locationlat = !empty($settings['alpha_location_lat']) ? $settings['alpha_location_lat'] : 18.591212;
+        $locationlat = ! empty($settings['alpha_location_lat']) ? sanitize_text_field($settings['alpha_location_lat']) : '18.591212';
 
-        $locationlong = !empty($settings['alpha_location_long']) ? $settings['alpha_location_long'] : 73.741261;
+        $locationlong = ! empty($settings['alpha_location_long']) ? sanitize_text_field($settings['alpha_location_long']) : '73.741261';
 
         $marker_width = !empty($settings['alpha_markers_width']) ? $settings['alpha_markers_width'] : 1000;
 
@@ -1000,51 +1000,93 @@ class Alpha_Google_Map_Widget extends Widget_Base
         <div class="alpha-map-container" id="alpha-map-container">
             <div class="alpha-google-map-title">
                 <?php
-                if ('' !== $settings['title']) {
+                if (!empty($settings['title'])) {
+                    // Add class for the title
                     $this->add_render_attribute('title', 'class', 'alpha-map-title');
-
+                    // Check and add size class if provided
                     if (!empty($settings['size'])) {
-                        $this->add_render_attribute('title', 'class', 'elementor-size-' . $settings['size']);
+                        $this->add_render_attribute('title', 'class', 'elementor-size-' . sanitize_html_class($settings['size']));
                     }
-
+                    // Allow inline editing of the title
                     $this->add_inline_editing_attributes('title');
 
-                    $title = $settings['title'];
-
+                    // Sanitize the title
+                    $title = sanitize_text_field($settings['title']);
+                    // If a link is provided, sanitize and set attributes
                     if (!empty($settings['link']['url'])) {
+                        $settings['link'] = wp_parse_args($settings['link'], ['url' => '', 'is_external' => '', 'nofollow' => '']);
                         $this->add_link_attributes('url', $settings['link']);
 
-                        $title = sprintf('<a %1$s>%2$s</a>', $this->get_render_attribute_string('url'), $title);
+                        $title = sprintf(
+                            '<a %1$s>%2$s</a>',
+                            $this->get_render_attribute_string('url'),
+                            esc_html($title)
+                        );
                     }
 
-                    $title_html = sprintf('<%1$s %2$s>%3$s</%1$s>', Utils::validate_html_tag($settings['header_size']), $this->get_render_attribute_string('title'), $title);
+                    // Validate and sanitize the header size tag
+                    $header_tag = Utils::validate_html_tag($settings['header_size']);
 
-                    echo $title_html;
+                    // Construct the title HTML with proper escaping
+                    $title_html = sprintf(
+                        '<%1$s %2$s>%3$s</%1$s>',
+                        esc_html($header_tag),
+                        $this->get_render_attribute_string('title'),
+                        $title
+                    );
+
+                    // Sanitize the entire output
+                    echo wp_kses(
+                        $title_html,
+                        [
+                            'a' => [
+                                'href' => [],
+                                'target' => [],
+                                'rel' => [],
+                                'class' => []
+                            ],
+                            $header_tag => [
+                                'class' => [],
+                                'id' => [],
+                                'style' => []
+                            ]
+                        ]
+                    );
                 }
                 ?>
             </div>
-            <?php if (count($map_pins)) { ?>
+            <?php if (! empty($map_pins)) { ?>
                 <div <?php echo wp_kses_post($this->get_render_attribute_string('style_wrapper')); ?>>
                     <?php
                     foreach ($map_pins as $index => $pin) {
                         $key = 'map_marker_' . $index;
+                        // Sanitize data before use
+                        $latitude = isset($pin['map_latitude']) ? sanitize_text_field($pin['map_latitude']) : '';
+                        $longitude = isset($pin['map_longitude']) ? sanitize_text_field($pin['map_longitude']) : '';
+                        $icon_url = isset($pin['pin_icon']['url']) ? esc_url($pin['pin_icon']['url']) : '';
+                        $icon_active_url = isset($pin['pin_active_icon']['url']) ? esc_url($pin['pin_active_icon']['url']) : '';
+                        $icon_size = isset($pin['pin_icon_size']['size']) ? intval($pin['pin_icon_size']['size']) : '';
+                        $data_max_width = isset($marker_width) ? intval($marker_width) : '';
+                        $data_id = intval($index);
 
                         $this->add_render_attribute(
                             $key,
                             array(
                                 'class'            => 'alpha-pin',
-                                'data-lng'         => $pin['map_longitude'],
-                                'data-lat'         => $pin['map_latitude'],
-                                'data-icon'        => $pin['pin_icon']['url'],
-                                'data-icon-active' => $pin['pin_active_icon']['url'],
-                                'data-icon-size'   => $pin['pin_icon_size']['size'],
-                                'data-max-width'   => $marker_width,
-                                'data-id'          => $index,
+                                'data-lng'         => $longitude,
+                                'data-lat'         => $latitude,
+                                'data-icon'        => $icon_url,
+                                'data-icon-active' => $icon_active_url,
+                                'data-icon-size'   => $icon_size,
+                                'data-max-width'   => $data_max_width,
+                                'data-id'          => $data_id,
                             )
                         );
 
-                        $ids   = wp_list_pluck($pin['pin_desc_gallery'], 'id');
+                        // Sanitize IDs
+                        $ids = array_map('intval', wp_list_pluck($pin['pin_desc_gallery'], 'id'));
                         $count = count($ids);
+                        $data_count = absint($count - 4);
                         $this->add_render_attribute('shortcode' . $index, 'ids', implode(',', $ids));
 
                     ?>
@@ -1055,7 +1097,7 @@ class Alpha_Google_Map_Widget extends Widget_Base
                                     <div class='alpha-map-info-desc'><?php echo wp_kses_post($pin['pin_desc']); ?></div>
                                     <div class='alpha-map-info-time-desc'><?php echo wp_kses_post($pin['pin_time_desc']); ?></div>
                                     <?php if (!empty($pin['pin_desc_gallery'])) : ?>
-                                        <div class="alpha-image-gallery" <?php echo 'data-count=' . abs($count - 4); ?>>
+                                        <div class="alpha-image-gallery" data-count="<?php echo esc_attr($data_count); ?>">
                                             <?php
                                             add_filter('wp_get_attachment_link', array($this, 'add_lightbox_data_to_image_link'), 10, 2);
                                             echo do_shortcode('[gallery link="file"  ' . $this->get_render_attribute_string('shortcode' . $index) . ']');

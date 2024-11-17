@@ -1,79 +1,76 @@
 === Alpha Google Map For Elementor ===
 Author: ali7ali
 Contributors: ali7ali
-Tags: google-map, google, premium, elementor, alpha, page builder, landing page, drag-and-drop
+Tags: google-map, google, elementor, maps, page builder
 Requires at least: 6.0
-Tested up to: 6.6
+Tested up to: 6.7
 Requires PHP: 7.4
-Stable tag: 1.2.0
+Stable tag: 1.2.1
 License: GPLv3
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
 
-Alpha Google Map For Elementor is a plugin that offers premium Google Map features for WordPress.
+Alpha Google Map For Elementor offers premium Google Map features for WordPress, enhancing your site with advanced map functionalities.
 
 == Description ==
-This plugin offers the generally needed Google Maps functionality with additional premium features.
 
-Plugin features 
- * Custom map pins
- * Pins change on-hover and active
- * Custom info-box with image gallery feature
- * Map controls
- * Responsive Live Editing
+This plugin provides essential Google Maps functionalities with additional premium features tailored for Elementor.
 
-Elementor Website  Builder comes with an exclusive toolset, that lets you create a truly responsive website in a whole new and visual way. From different font sizes, padding, and margin per device, to reverse column ordering, this is the most powerful mobile site builder for creating perfect responsive websites.
+**Plugin Features:**
 
-= Demo =
-Check this widget demo here [here](https://alphatrio.net/alpha-google-map-for-elementor/).
+- Custom map pins with hover and active states
+- Customizable info-box with image gallery support
+- Extensive map controls
+- Responsive live editing within Elementor
+- Compatibility with the latest Google Maps API standards
 
-= Contributing and reporting bugs =
+**Demo:**
 
-You can contribute code to this plugin via GitHub: [https://github.com/ali7ali/Alpha-Google-Map-For-Elementor](https://github.com/ali7ali/Alpha-Google-Map-For-Elementor)
+Check out the plugin demo [here](https://ali-ali.org/project/alpha-google-map-for-elementor/).
 
-= Support =
+**Contributing and Reporting Bugs:**
 
-Use the WordPress.org forums for community support. If you spot a bug, you can of course log it on [Github](https://github.com/ali7ali/Alpha-Google-Map-For-Elementor/issues/new/choose) instead where we can act upon it more efficiently.
+Contribute on GitHub: [Alpha-Google-Map-For-Elementor](https://github.com/ali7ali/Alpha-Google-Map-For-Elementor)
 
-== Installation == 
+**Support:**
 
-= Minimum Requirements =
-	
-* WordPress 6.0 or greater
-* PHP version 7.4 or greater
-* MySQL version 5.0 or greater
+For community support, use the WordPress.org forums. Report bugs on [GitHub Issues](https://github.com/ali7ali/Alpha-Google-Map-For-Elementor/issues/new/choose).
 
-= We recommend your host supports: =
+== Installation ==
 
-* PHP version 8.1 or greater
-* MySQL version 5.6 or greater
-* WordPress Memory limit of 64 MB or greater (128 MB or higher is preferred)
+**Minimum Requirements:**
 
-= Installation =
+- WordPress 6.0 or greater
+- PHP version 7.4 or greater
+- MySQL version 5.0 or greater
 
-First, make sure you have [Elementor Website Builder](https://wordpress.org/plugins/elementor/) plugin installed and activated.
+**Recommended:**
 
-Then follow these steps to install the plugin:
+- PHP version 8.1 or greater
+- MySQL version 5.6 or greater
+- WordPress Memory limit of 128 MB or higher
 
-1. Log in to the WordPress Dashboard as an administrator.
-2. Click the Plugins | Add New button.
-3. Search for 'Alpha Google Map For Elementor' in the Search plugins field.
-4. Once you see the plugin listed, click the Install Now button.
-5. Click the Activate button to activate the plugin.
+**Installation Steps:**
 
-Manual or using sFTP install:
- 1. Upload 'plugin-directory' to the '/wp-content/plugins/' directory 
- 2. Activate the plugin through the 'Plugins' screen in WordPress 
+1. Ensure [Elementor Website Builder](https://wordpress.org/plugins/elementor/) is installed and activated.
+2. Navigate to Plugins > Add New in your WordPress dashboard.
+3. Search for 'Alpha Google Map For Elementor'.
+4. Install and activate the plugin.
+
+**Manual Installation:**
+
+1. Upload the 'alpha-google-map-for-elementor' folder to `/wp-content/plugins/`.
+2. Activate the plugin via the 'Plugins' screen in WordPress.
 
 == Upgrade Notice ==
 
-= 1.2.0 =
-Compatibility for WP 6.6 and refactor the integration with Elementor.
+= 1.2.1 =
+Compatibility for WP 6.7 and security improvements, code modernization, and compatibility updates.
 
 == Frequently Asked Questions ==
 
-**Can I use Alpha Google Map For Elementor as stand-alone plugin**
+**Can I use Alpha Google Map For Elementor as a stand-alone plugin?**
 
-No. You need to install Elementor Website Builder first.
+No. Elementor Website Builder must be installed and activated.
 
 == Screenshots ==
 
@@ -86,6 +83,12 @@ No. You need to install Elementor Website Builder first.
 7. **Pin Gallery.** Choose and add images to each pin gallery.
 
 == Changelog ==
+
+= 1.2.1 - 2024-11-16 =
+* Enhanced compatibility with the latest WordPress and Elementor versions.
+* Adhered to WordPress coding standards throughout the codebase.
+* Refactored JavaScript code to use modern standards and practices.
+* Fixed bugs and optimized performance.
 
 = 1.2.0 - 2024-07-20 =
 * Compatibility for WP 6.6 and refactor the integration with Elementor.
