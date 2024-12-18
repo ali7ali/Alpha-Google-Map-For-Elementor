@@ -8,7 +8,6 @@ if (!defined('ABSPATH')) {
 
 /**
  * Alpha Google Map Widget.
- *
  *  */
 
 // Elementor Classes.
@@ -18,8 +17,6 @@ use Elementor\Controls_Manager;
 use Elementor\Repeater;
 use Elementor\Utils;
 use Elementor\Settings;
-use Elementor\Core\Schemes\Color;
-use Elementor\Core\Schemes\Typography;
 use Elementor\Core\Kits\Documents\Tabs\Global_Colors;
 use Elementor\Core\Kits\Documents\Tabs\Global_Typography;
 use Elementor\Group_Control_Border;
@@ -435,10 +432,9 @@ class Alpha_Google_Map_Widget extends Widget_Base
             array(
                 'label'     => __('Color', 'alpha-google-map-for-elementor'),
                 'type'      => Controls_Manager::COLOR,
-                'scheme'    => array(
-                    'type'  => Color::get_type(),
-                    'value' => Color::COLOR_1,
-                ),
+                'global' => [
+                    'default' => Global_Colors::COLOR_PRIMARY,
+                ],
                 'selectors' => array(
                     '{{WRAPPER}} .alpha-map-info-title' => 'color: {{VALUE}};',
                 ),
@@ -449,7 +445,9 @@ class Alpha_Google_Map_Widget extends Widget_Base
             Group_Control_Typography::get_type(),
             array(
                 'name'     => 'pin_title_typography',
-                'scheme'   => Typography::TYPOGRAPHY_1,
+                'global' => [
+            'default' => Global_Typography::TYPOGRAPHY_PRIMARY,
+                ],
                 'selector' => '{{WRAPPER}} .alpha-map-info-title',
             )
         );
@@ -519,10 +517,9 @@ class Alpha_Google_Map_Widget extends Widget_Base
             array(
                 'label'     => __('Color', 'alpha-google-map-for-elementor'),
                 'type'      => Controls_Manager::COLOR,
-                'scheme'    => array(
-                    'type'  => Color::get_type(),
-                    'value' => Color::COLOR_2,
-                ),
+                'global' => [
+                                'default' => Global_Colors::COLOR_SECONDARY,
+                            ],
                 'selectors' => array(
                     '{{WRAPPER}} .alpha-map-info-desc' => 'color: {{VALUE}};',
                 ),
@@ -533,7 +530,9 @@ class Alpha_Google_Map_Widget extends Widget_Base
             Group_Control_Typography::get_type(),
             array(
                 'name'     => 'pin_text_typo',
-                'scheme'   => Typography::TYPOGRAPHY_1,
+                'global' => [
+            'default' => Global_Typography::TYPOGRAPHY_PRIMARY,
+                ],
                 'selector' => '{{WRAPPER}} .alpha-map-info-desc',
             )
         );
@@ -603,10 +602,9 @@ class Alpha_Google_Map_Widget extends Widget_Base
             array(
                 'label'     => __('Color', 'alpha-google-map-for-elementor'),
                 'type'      => Controls_Manager::COLOR,
-                'scheme'    => array(
-                    'type'  => Color::get_type(),
-                    'value' => Color::COLOR_2,
-                ),
+                'global' => [
+                    'default' => Global_Colors::COLOR_SECONDARY,
+                ],
                 'selectors' => array(
                     '{{WRAPPER}} .alpha-map-info-time-desc' => 'color: {{VALUE}};',
                 ),
@@ -617,7 +615,9 @@ class Alpha_Google_Map_Widget extends Widget_Base
             Group_Control_Typography::get_type(),
             array(
                 'name'     => 'pin_time_typo',
-                'scheme'   => Typography::TYPOGRAPHY_1,
+                'global' => [
+            'default' => Global_Typography::TYPOGRAPHY_PRIMARY,
+                ],
                 'selector' => '{{WRAPPER}} .alpha-map-info-time-desc',
             )
         );
@@ -923,8 +923,8 @@ class Alpha_Google_Map_Widget extends Widget_Base
     /**
      * Show the count of how many images left in the gallery
      *
-     * @param string $link_html  link for an image.
-     * @param string $id     the id of an image.
+     * @param string $link_html link for an image.
+     * @param string $id        the id of an image.
      *
      * @return string|string[]|null
      */
@@ -996,7 +996,7 @@ class Alpha_Google_Map_Widget extends Widget_Base
             )
         );
 
-?>
+        ?>
         <div class="alpha-map-container" id="alpha-map-container">
             <div class="alpha-google-map-title">
                 <?php
@@ -1089,7 +1089,7 @@ class Alpha_Google_Map_Widget extends Widget_Base
                         $data_count = absint($count - 4);
                         $this->add_render_attribute('shortcode' . $index, 'ids', implode(',', $ids));
 
-                    ?>
+                        ?>
                         <div <?php echo wp_kses_post($this->get_render_attribute_string($key)); ?>>
                             <?php if (!empty($pin['pin_title']) || !empty($pin['pin_desc']) || !empty($pin['pin_time_desc'])) : ?>
                                 <div class='alpha-map-info-container'>
@@ -1108,14 +1108,14 @@ class Alpha_Google_Map_Widget extends Widget_Base
                                 </div>
                             <?php endif; ?>
                         </div>
-                    <?php
+                        <?php
                     }
                     ?>
                 </div>
-            <?php
+                <?php
             }
             ?>
         </div>
-<?php
+        <?php
     }
 }

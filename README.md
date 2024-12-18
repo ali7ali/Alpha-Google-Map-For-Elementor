@@ -15,7 +15,7 @@
 **Requires at least:** 6.0  
 **Tested up to:** 6.7  
 **Requires PHP:** 7.4  
-**Stable tag:** 1.2.1  
+**Stable tag:** 1.2.2  
 **License:** [GPLv3](https://www.gnu.org/licenses/gpl-3.0.html)
 
 Alpha Google Map For Elementor offers premium Google Map features for WordPress, enhancing your site with advanced map functionalities.
@@ -74,9 +74,9 @@ Use the WordPress.org forums for community support. If you spot a bug, you can l
 
 ## Upgrade Notice
 
-### 1.2.1
+### 1.2.2
 
-Compatibility for WP 6.7 and security improvements, code modernization, and compatibility updates.
+Compatibility for WP 6.6 and refactor the integration with Elementor.
 
 ## Frequently Asked Questions
 
@@ -95,6 +95,10 @@ No. You need to install Elementor Website Builder first.
 7. **Pin Gallery.** Choose and add images to each pin gallery.
 
 ## Changelog
+
+### 1.2.2 - 2024-12-18
+
+- Compatibility for the updated Elementor colors and typography schema.
 
 ### 1.2.1 - 2024-11-16
 

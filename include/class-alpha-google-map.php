@@ -19,7 +19,7 @@ final class Alpha_Google_Map
      * Minimum Elementor Version
      *
      * @since 1.0.0
-     * @var string Minimum Elementor version required to run the addon.
+     * @var   string Minimum Elementor version required to run the addon.
      */
     const MINIMUM_ELEMENTOR_VERSION = '3.21.0';
 
@@ -27,17 +27,17 @@ final class Alpha_Google_Map
      * Minimum PHP Version
      *
      * @since 1.0.0
-     * @var string Minimum PHP version required to run the addon.
+     * @var   string Minimum PHP version required to run the addon.
      */
     const MINIMUM_PHP_VERSION = '7.4';
 
     /**
      * Instance
      *
-     * @since 1.0.0
+     * @since  1.0.0
      * @access private
      * @static
-     * @var \Elementor_Alpha_Google_Map_Addon\Alpha_Google_Map The single instance of the class.
+     * @var    \Elementor_Alpha_Google_Map_Addon\Alpha_Google_Map The single instance of the class.
      */
     private static $_instance = null;
 
@@ -46,7 +46,7 @@ final class Alpha_Google_Map
      *
      * Ensures only one instance of the class is loaded or can be loaded.
      *
-     * @since 1.0.0
+     * @since  1.0.0
      * @access public
      * @static
      * @return \Elementor_Alpha_Google_Map_Addon\Alpha_Google_Map An instance of the class.
@@ -66,7 +66,7 @@ final class Alpha_Google_Map
      * Perform some compatibility checks to make sure basic requirements are meet.
      * If all compatibility checks pass, initialize the functionality.
      *
-     * @since 1.0.0
+     * @since  1.0.0
      * @access private
      */
     private function __construct()
@@ -89,7 +89,7 @@ final class Alpha_Google_Map
      *
      * Checks whether the site meets the addon requirement.
      *
-     * @since 1.0.0
+     * @since  1.0.0
      * @access public
      */
     public function is_compatible(): bool
@@ -136,7 +136,7 @@ final class Alpha_Google_Map
     function add_assets(): void
     {
         if (! function_exists('WP_Filesystem')) {
-            require_once ABSPATH . 'wp-admin/includes/file.php';
+            include_once ABSPATH . 'wp-admin/includes/file.php';
         }
         WP_Filesystem();
         global $wp_filesystem;
@@ -176,16 +176,16 @@ final class Alpha_Google_Map
      *
      * Warning when the site doesn't have Elementor installed or activated.
      *
-     * @since 1.0.0
+     * @since  1.0.0
      * @access public
      */
     public function admin_notice_missing_main_plugin(): void
     {
         $message = sprintf(
-            /* translators: 1: Plugin name 2: Elementor */
-            esc_html__('"%1$s" requires "%2$s" to be installed and activated.', 'alpha-google-map-for-elementor'),
-            '<strong>' . esc_html__('Alpha Google Map For Elementor', 'alpha-google-map-for-elementor') . '</strong>',
-            '<strong>' . esc_html__('Elementor', 'alpha-google-map-for-elementor') . '</strong>'
+        /* translators: 1: Plugin name 2: Elementor */
+            __('"%1$s" requires "%2$s" to be installed and activated.', 'alpha-google-map-for-elementor'),
+            '<strong>' . __('Alpha Google Map For Elementor', 'alpha-google-map-for-elementor') . '</strong>',
+            '<strong>' . __('Elementor', 'alpha-google-map-for-elementor') . '</strong>'
         );
 
         $elementor     = 'elementor/elementor.php';
@@ -199,11 +199,23 @@ final class Alpha_Google_Map
             $activation_url = wp_nonce_url(self_admin_url('update.php?action=install-plugin&plugin=elementor'), 'install-plugin_elementor');
             $button_text = esc_html__('Install Elementor', 'alpha-google-map-for-elementor');
         }
-        $button = '<p><a href="' . $activation_url . '" class="button-primary">' . $button_text . '</a></p>';
+        $button = '<p><a href="' . esc_url($activation_url) . '" class="button-primary">' . esc_html($button_text) . '</a></p>';
+
+        $allowed_html = [
+            'strong' => [],
+            'a' => [
+                'href' => [],
+                'class' => [],
+            ],
+            'p' => [],
+            'div' => [
+                'class' => [],
+            ],
+        ];
+
         printf(
-            '<div class="notice notice-warning is-dismissible"><p>%1$s</p>%2$s</div>',
-            esc_html($message),
-            wp_kses_post($button)
+            '<div class="notice notice-warning is-dismissible">%s</div>',
+            wp_kses('<p>' . $message . '</p>' . $button, $allowed_html)
         );
     }
 
@@ -212,20 +224,31 @@ final class Alpha_Google_Map
      *
      * Warning when the site doesn't have a minimum required Elementor version.
      *
-     * @since 1.0.0
+     * @since  1.0.0
      * @access public
      */
     public function admin_notice_minimum_elementor_version(): void
     {
         $message = sprintf(
-            /* translators: 1: Plugin name 2: Elementor 3: Required Elementor version */
-            esc_html__('"%1$s" requires "%2$s" version %3$s or greater.', 'alpha-google-map-for-elementor'),
-            '<strong>' . esc_html__('Alpha Google Map For Elementor', 'alpha-google-map-for-elementor') . '</strong>',
-            '<strong>' . esc_html__('Elementor', 'alpha-google-map-for-elementor') . '</strong>',
+        /* translators: 1: Plugin name 2: Elementor 3: Required Elementor version */
+            __('"%1$s" requires "%2$s" version %3$s or greater.', 'alpha-google-map-for-elementor'),
+            '<strong>' . __('Alpha Google Map For Elementor', 'alpha-google-map-for-elementor') . '</strong>',
+            '<strong>' . __('Elementor', 'alpha-google-map-for-elementor') . '</strong>',
             self::MINIMUM_ELEMENTOR_VERSION
         );
 
-        printf('<div class="notice notice-warning is-dismissible"><p>%1$s</p></div>', esc_html($message));
+        $allowed_html = [
+            'strong' => [],
+            'p' => [],
+            'div' => [
+                'class' => [],
+            ],
+        ];
+
+        printf(
+            '<div class="notice notice-warning is-dismissible">%s</div>',
+            wp_kses('<p>' . $message . '</p>', $allowed_html)
+        );
     }
 
     /**
@@ -233,20 +256,31 @@ final class Alpha_Google_Map
      *
      * Warning when the site doesn't have a minimum required PHP version.
      *
-     * @since 1.0.0
+     * @since  1.0.0
      * @access public
      */
     public function admin_notice_minimum_php_version(): void
     {
         $message = sprintf(
-            /* translators: 1: Plugin name 2: PHP 3: Required PHP version */
-            esc_html__('"%1$s" requires "%2$s" version %3$s or greater.', 'alpha-google-map-for-elementor'),
-            '<strong>' . esc_html__('Alpha Google Map For Elementor', 'alpha-google-map-for-elementor') . '</strong>',
-            '<strong>' . esc_html__('PHP', 'alpha-google-map-for-elementor') . '</strong>',
+        /* translators: 1: Plugin name 2: PHP 3: Required PHP version */
+            __('"%1$s" requires "%2$s" version %3$s or greater.', 'alpha-google-map-for-elementor'),
+            '<strong>' . __('Alpha Google Map For Elementor', 'alpha-google-map-for-elementor') . '</strong>',
+            '<strong>' . __('PHP', 'alpha-google-map-for-elementor') . '</strong>',
             self::MINIMUM_PHP_VERSION
         );
 
-        printf('<div class="notice notice-warning is-dismissible"><p>%1$s</p></div>', esc_html($message));
+        $allowed_html = [
+            'strong' => [],
+            'p' => [],
+            'div' => [
+                'class' => [],
+            ],
+        ];
+
+        printf(
+            '<div class="notice notice-warning is-dismissible">%s</div>',
+            wp_kses('<p>' . $message . '</p>', $allowed_html)
+        );
     }
 
     /**
@@ -263,10 +297,12 @@ final class Alpha_Google_Map
     public function frontend_scripts(): void
     {
         // Script register.
-        wp_enqueue_script('alphamap', ALPHAMAP_PL_ASSETS . 'js/alpha-map.js',  ['jquery', 'alpha-api-js'], ALPHAMAP_VERSION, array(
+        wp_enqueue_script(
+            'alphamap', ALPHAMAP_PL_ASSETS . 'js/alpha-map.js',  ['jquery', 'alpha-api-js'], ALPHAMAP_VERSION, array(
             'in_footer' => true,
             'strategy'  => 'defer',
-        ));
+            )
+        );
 
         // get an option.
         $api_key = get_option('elementor_google_maps_api_key');
@@ -296,7 +332,7 @@ final class Alpha_Google_Map
     public function register_widgets($widgets_manager): void
     {
         // Include Widget files.
-        require_once ALPHAMAP_PL_INCLUDE . '/class-alpha-google-map-widget.php';
+        include_once ALPHAMAP_PL_INCLUDE . '/class-alpha-google-map-widget.php';
         // Register widget.
         $widgets_manager->register(new \AlphaGoogleMap\Alpha_Google_Map_Widget());
     }
