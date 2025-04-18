@@ -39,8 +39,13 @@ jQuery(window).on("elementor/frontend/init", function () {
                     styles: mapStyle
                 };
 
-                if ("yes" === mapSettings.drag)
-                    args.gestureHandling = "none";
+                if ( settings.gestureHandling ) {
+                    args.gestureHandling = settings.gestureHandling;
+                }
+
+                if ( "yes" === settings.drag ) {
+                    args.gestureHandling = 'none';
+                }
 
                 var markers = map.find(".alpha-pin");
 

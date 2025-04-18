@@ -1,359 +1,377 @@
-# Copyright (C) 2023 Ali Ali
+# Copyright (C) 2025 Ali Ali
 # This file is distributed under the GPLv3.
 msgid ""
 msgstr ""
-"Project-Id-Version: Alpha Google Map For Elementor 1.0.9\n"
+"Project-Id-Version: Alpha Google Map For Elementor 1.3\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/alpha-google-map-for-elementor\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2023-11-11T13:54:59+00:00\n"
+"POT-Creation-Date: 2025-04-17T10:34:32+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"X-Generator: WP-CLI 2.5.0\n"
+"X-Generator: WP-CLI 2.11.0\n"
 "X-Domain: alpha-google-map-for-elementor\n"
 
 #. Plugin Name of the plugin
-#: include/class-alpha-google-map.php:200
-#: include/class-alpha-google-map.php:221
+#: alpha-google-map-for-elementor.php
+#: include/class-alpha-google-map.php:184
+#: include/class-alpha-google-map.php:231
+#: include/class-alpha-google-map.php:262
 msgid "Alpha Google Map For Elementor"
 msgstr ""
 
 #. Plugin URI of the plugin
-msgid "https://alphatrio.net"
+#: alpha-google-map-for-elementor.php
+msgid "https://ali-ali.org/"
 msgstr ""
 
 #. Description of the plugin
+#: alpha-google-map-for-elementor.php
 msgid "Premium Google Map features for WordPress."
 msgstr ""
 
 #. Author of the plugin
+#: alpha-google-map-for-elementor.php
 msgid "Ali Ali"
 msgstr ""
 
 #. Author URI of the plugin
+#: alpha-google-map-for-elementor.php
 msgid "https://github.com/Ali7Ali"
 msgstr ""
 
-#: include/class-alpha-google-map-widget.php:52
+#: include/class-alpha-google-map-widget.php:53
 msgid "Alpha Google Map"
 msgstr ""
 
-#: include/class-alpha-google-map-widget.php:83
+#: include/class-alpha-google-map-widget.php:81
 msgid "Map Window Location"
 msgstr ""
 
 #. translators: 1: Integration settings link open tag, 2: Create API key link open tag, 3: Link close tag.
-#: include/class-alpha-google-map-widget.php:95
+#: include/class-alpha-google-map-widget.php:93
 msgid "Set your Google Maps API Key in Elementor's %1$sIntegrations Settings%3$s page. Create your key %2$shere.%3$s"
 msgstr ""
 
 #. translators: 1: Demo link open tag, 2: Link close tag.
-#: include/class-alpha-google-map-widget.php:111
+#: include/class-alpha-google-map-widget.php:109
 msgid "Check this widget demo %1$shere%2$s."
 msgstr ""
 
-#: include/class-alpha-google-map-widget.php:122
+#: include/class-alpha-google-map-widget.php:120
 msgid "Location Latitude"
 msgstr ""
 
-#: include/class-alpha-google-map-widget.php:125
+#: include/class-alpha-google-map-widget.php:123
 msgid "Enter your location latitude"
 msgstr ""
 
-#: include/class-alpha-google-map-widget.php:134
+#: include/class-alpha-google-map-widget.php:132
 msgid "Location Longitude"
 msgstr ""
 
-#: include/class-alpha-google-map-widget.php:137
+#: include/class-alpha-google-map-widget.php:135
 msgid "Enter your location longitude"
 msgstr ""
 
-#: include/class-alpha-google-map-widget.php:148
+#: include/class-alpha-google-map-widget.php:146
 msgid "Markers"
 msgstr ""
 
-#: include/class-alpha-google-map-widget.php:155
+#: include/class-alpha-google-map-widget.php:153
 msgid "Max Width"
 msgstr ""
 
-#: include/class-alpha-google-map-widget.php:157
+#: include/class-alpha-google-map-widget.php:155
 msgid "Set the Maximum width for markers description box"
 msgstr ""
 
-#: include/class-alpha-google-map-widget.php:166
+#: include/class-alpha-google-map-widget.php:164
 msgid "Custom Icon"
 msgstr ""
 
-#: include/class-alpha-google-map-widget.php:178
+#: include/class-alpha-google-map-widget.php:176
 msgid "Icon On Active Pin"
 msgstr ""
 
-#: include/class-alpha-google-map-widget.php:191
-#: include/class-alpha-google-map-widget.php:776
+#: include/class-alpha-google-map-widget.php:189
+#: include/class-alpha-google-map-widget.php:789
 msgid "Size"
 msgstr ""
 
-#: include/class-alpha-google-map-widget.php:210
+#: include/class-alpha-google-map-widget.php:208
 msgid "Pin Latitude"
 msgstr ""
 
-#: include/class-alpha-google-map-widget.php:220
+#: include/class-alpha-google-map-widget.php:218
 msgid "Pin Longitude"
 msgstr ""
 
-#: include/class-alpha-google-map-widget.php:230
-#: include/class-alpha-google-map-widget.php:425
+#: include/class-alpha-google-map-widget.php:228
+#: include/class-alpha-google-map-widget.php:435
 msgid "Title"
 msgstr ""
 
-#: include/class-alpha-google-map-widget.php:240
-#: include/class-alpha-google-map-widget.php:509
+#: include/class-alpha-google-map-widget.php:238
+#: include/class-alpha-google-map-widget.php:520
 msgid "Description"
 msgstr ""
 
-#: include/class-alpha-google-map-widget.php:250
-#: include/class-alpha-google-map-widget.php:593
+#: include/class-alpha-google-map-widget.php:248
+#: include/class-alpha-google-map-widget.php:605
 msgid "Time Table"
 msgstr ""
 
-#: include/class-alpha-google-map-widget.php:260
+#: include/class-alpha-google-map-widget.php:258
 msgid "Pin Gallery"
 msgstr ""
 
-#: include/class-alpha-google-map-widget.php:270
+#: include/class-alpha-google-map-widget.php:268
 msgid "Map Pins"
 msgstr ""
 
-#: include/class-alpha-google-map-widget.php:275
+#: include/class-alpha-google-map-widget.php:273
 msgid "Alpha Google Maps"
 msgstr ""
 
-#: include/class-alpha-google-map-widget.php:276
+#: include/class-alpha-google-map-widget.php:274
 msgid "Add an optional description to your map pin"
 msgstr ""
 
-#: include/class-alpha-google-map-widget.php:277
+#: include/class-alpha-google-map-widget.php:275
 msgid "Add a time table for the location pin"
 msgstr ""
 
-#: include/class-alpha-google-map-widget.php:289
+#: include/class-alpha-google-map-widget.php:287
 msgid "Controls"
 msgstr ""
 
-#: include/class-alpha-google-map-widget.php:296
+#: include/class-alpha-google-map-widget.php:294
 msgid "Map Type"
 msgstr ""
 
-#: include/class-alpha-google-map-widget.php:299
+#: include/class-alpha-google-map-widget.php:297
 msgid "Road Map"
 msgstr ""
 
-#: include/class-alpha-google-map-widget.php:300
+#: include/class-alpha-google-map-widget.php:298
 msgid "Satellite"
 msgstr ""
 
-#: include/class-alpha-google-map-widget.php:301
+#: include/class-alpha-google-map-widget.php:299
 msgid "Terrain"
 msgstr ""
 
-#: include/class-alpha-google-map-widget.php:302
+#: include/class-alpha-google-map-widget.php:300
 msgid "Hybrid"
 msgstr ""
 
-#: include/class-alpha-google-map-widget.php:311
+#: include/class-alpha-google-map-widget.php:309
 msgid "Height"
 msgstr ""
 
-#: include/class-alpha-google-map-widget.php:331
+#: include/class-alpha-google-map-widget.php:329
 msgid "Zoom"
 msgstr ""
 
-#: include/class-alpha-google-map-widget.php:348
+#: include/class-alpha-google-map-widget.php:346
 msgid "Disable Map Drag"
 msgstr ""
 
-#: include/class-alpha-google-map-widget.php:356
+#: include/class-alpha-google-map-widget.php:354
 msgid "Map Type Controls"
 msgstr ""
 
-#: include/class-alpha-google-map-widget.php:364
+#: include/class-alpha-google-map-widget.php:362
 msgid "Zoom Controls"
 msgstr ""
 
-#: include/class-alpha-google-map-widget.php:372
+#: include/class-alpha-google-map-widget.php:370
 msgid "Street View Control"
 msgstr ""
 
-#: include/class-alpha-google-map-widget.php:380
+#: include/class-alpha-google-map-widget.php:378
 msgid "Fullscreen Control"
 msgstr ""
 
-#: include/class-alpha-google-map-widget.php:388
+#: include/class-alpha-google-map-widget.php:386
 msgid "Scroll Wheel Zoom"
 msgstr ""
 
+#: include/class-alpha-google-map-widget.php:394
+msgid "One‑Finger Scroll (Gesture Handling)"
+msgstr ""
+
 #: include/class-alpha-google-map-widget.php:396
+msgid "Enabled"
+msgstr ""
+
+#: include/class-alpha-google-map-widget.php:397
+msgid "Disabled"
+msgstr ""
+
+#: include/class-alpha-google-map-widget.php:406
 msgid "Info Container Always Opened"
 msgstr ""
 
-#: include/class-alpha-google-map-widget.php:404
+#: include/class-alpha-google-map-widget.php:414
 msgid "Info Container Opened when Hovered"
 msgstr ""
 
-#: include/class-alpha-google-map-widget.php:412
+#: include/class-alpha-google-map-widget.php:422
 msgid "Info Container Closed when Mouse Out"
 msgstr ""
 
-#: include/class-alpha-google-map-widget.php:433
-#: include/class-alpha-google-map-widget.php:517
-#: include/class-alpha-google-map-widget.php:601
+#: include/class-alpha-google-map-widget.php:443
+#: include/class-alpha-google-map-widget.php:528
+#: include/class-alpha-google-map-widget.php:613
 msgid "Color"
 msgstr ""
 
-#: include/class-alpha-google-map-widget.php:457
-#: include/class-alpha-google-map-widget.php:541
-#: include/class-alpha-google-map-widget.php:625
-#: include/class-alpha-google-map-widget.php:714
-#: include/class-alpha-google-map-widget.php:896
+#: include/class-alpha-google-map-widget.php:468
+#: include/class-alpha-google-map-widget.php:553
+#: include/class-alpha-google-map-widget.php:638
+#: include/class-alpha-google-map-widget.php:727
+#: include/class-alpha-google-map-widget.php:909
 msgid "Margin"
 msgstr ""
 
-#: include/class-alpha-google-map-widget.php:469
-#: include/class-alpha-google-map-widget.php:553
-#: include/class-alpha-google-map-widget.php:637
-#: include/class-alpha-google-map-widget.php:726
-#: include/class-alpha-google-map-widget.php:908
+#: include/class-alpha-google-map-widget.php:480
+#: include/class-alpha-google-map-widget.php:565
+#: include/class-alpha-google-map-widget.php:650
+#: include/class-alpha-google-map-widget.php:739
+#: include/class-alpha-google-map-widget.php:921
 msgid "Padding"
 msgstr ""
 
-#: include/class-alpha-google-map-widget.php:481
-#: include/class-alpha-google-map-widget.php:565
-#: include/class-alpha-google-map-widget.php:649
-#: include/class-alpha-google-map-widget.php:813
+#: include/class-alpha-google-map-widget.php:492
+#: include/class-alpha-google-map-widget.php:577
+#: include/class-alpha-google-map-widget.php:662
+#: include/class-alpha-google-map-widget.php:826
 msgid "Alignment"
 msgstr ""
 
-#: include/class-alpha-google-map-widget.php:485
-#: include/class-alpha-google-map-widget.php:569
-#: include/class-alpha-google-map-widget.php:653
-#: include/class-alpha-google-map-widget.php:817
+#: include/class-alpha-google-map-widget.php:496
+#: include/class-alpha-google-map-widget.php:581
+#: include/class-alpha-google-map-widget.php:666
+#: include/class-alpha-google-map-widget.php:830
 msgid "Left"
 msgstr ""
 
-#: include/class-alpha-google-map-widget.php:489
-#: include/class-alpha-google-map-widget.php:573
-#: include/class-alpha-google-map-widget.php:657
-#: include/class-alpha-google-map-widget.php:821
+#: include/class-alpha-google-map-widget.php:500
+#: include/class-alpha-google-map-widget.php:585
+#: include/class-alpha-google-map-widget.php:670
+#: include/class-alpha-google-map-widget.php:834
 msgid "Center"
 msgstr ""
 
-#: include/class-alpha-google-map-widget.php:493
-#: include/class-alpha-google-map-widget.php:577
-#: include/class-alpha-google-map-widget.php:661
-#: include/class-alpha-google-map-widget.php:825
+#: include/class-alpha-google-map-widget.php:504
+#: include/class-alpha-google-map-widget.php:589
+#: include/class-alpha-google-map-widget.php:674
+#: include/class-alpha-google-map-widget.php:838
 msgid "Right"
 msgstr ""
 
-#: include/class-alpha-google-map-widget.php:677
+#: include/class-alpha-google-map-widget.php:690
 msgid "Map"
 msgstr ""
 
-#: include/class-alpha-google-map-widget.php:693
+#: include/class-alpha-google-map-widget.php:706
 msgid "Border Radius"
 msgstr ""
 
-#: include/class-alpha-google-map-widget.php:705
+#: include/class-alpha-google-map-widget.php:718
 msgid "Shadow"
 msgstr ""
 
-#: include/class-alpha-google-map-widget.php:741
-#: include/class-alpha-google-map-widget.php:748
-#: include/class-alpha-google-map-widget.php:855
+#: include/class-alpha-google-map-widget.php:754
+#: include/class-alpha-google-map-widget.php:761
+#: include/class-alpha-google-map-widget.php:868
 msgid "Map Title"
 msgstr ""
 
-#: include/class-alpha-google-map-widget.php:753
+#: include/class-alpha-google-map-widget.php:766
 msgid "Enter your title"
 msgstr ""
 
-#: include/class-alpha-google-map-widget.php:754
+#: include/class-alpha-google-map-widget.php:767
 msgid "Add Your Title Text Here"
 msgstr ""
 
-#: include/class-alpha-google-map-widget.php:761
+#: include/class-alpha-google-map-widget.php:774
 msgid "Link"
 msgstr ""
 
-#: include/class-alpha-google-map-widget.php:780
+#: include/class-alpha-google-map-widget.php:793
 msgid "Default"
 msgstr ""
 
-#: include/class-alpha-google-map-widget.php:781
+#: include/class-alpha-google-map-widget.php:794
 msgid "Small"
 msgstr ""
 
-#: include/class-alpha-google-map-widget.php:782
+#: include/class-alpha-google-map-widget.php:795
 msgid "Medium"
 msgstr ""
 
-#: include/class-alpha-google-map-widget.php:783
+#: include/class-alpha-google-map-widget.php:796
 msgid "Large"
 msgstr ""
 
-#: include/class-alpha-google-map-widget.php:784
+#: include/class-alpha-google-map-widget.php:797
 msgid "XL"
 msgstr ""
 
-#: include/class-alpha-google-map-widget.php:785
+#: include/class-alpha-google-map-widget.php:798
 msgid "XXL"
 msgstr ""
 
-#: include/class-alpha-google-map-widget.php:793
+#: include/class-alpha-google-map-widget.php:806
 msgid "HTML Tag"
 msgstr ""
 
-#: include/class-alpha-google-map-widget.php:829
+#: include/class-alpha-google-map-widget.php:842
 msgid "Justified"
 msgstr ""
 
-#: include/class-alpha-google-map-widget.php:843
+#: include/class-alpha-google-map-widget.php:856
 msgid "View"
 msgstr ""
 
-#: include/class-alpha-google-map-widget.php:863
+#: include/class-alpha-google-map-widget.php:876
 msgid "Text Color"
 msgstr ""
 
-#. translators: 1: Just text decoration 2: Just text decoration
-#: include/class-alpha-google-map.php:172
-msgid "%1$sAlpha Google Map For Elementor%2$s requires %1$s\"Elementor\"%2$s plugin to be active. Please activate Elementor to continue."
+#. translators: 1: Plugin name 2: Elementor
+#: include/class-alpha-google-map.php:183
+msgid "\"%1$s\" requires \"%2$s\" to be installed and activated."
 msgstr ""
 
-#: include/class-alpha-google-map.php:173
+#: include/class-alpha-google-map.php:185
+#: include/class-alpha-google-map.php:232
+msgid "Elementor"
+msgstr ""
+
+#: include/class-alpha-google-map.php:194
 msgid "Activate Elementor"
 msgstr ""
 
-#. translators: 1: Just text decoration 2: Just text decoration
-#: include/class-alpha-google-map.php:180
-msgid "%1$sAlpha Google Map For Elementor%2$s requires %1$s\"Elementor\"%2$s plugin to be installed and activated. Please install Elementor to continue."
-msgstr ""
-
-#: include/class-alpha-google-map.php:181
+#: include/class-alpha-google-map.php:197
 msgid "Install Elementor"
 msgstr ""
 
 #. translators: 1: Plugin name 2: Elementor 3: Required Elementor version
-#: include/class-alpha-google-map.php:199
+#: include/class-alpha-google-map.php:230
+msgid "\"%1$s\" requires \"%2$s\" version %3$s or greater"
+msgstr ""
+
+#. translators: 1: Plugin name 2: PHP 3: Required PHP version
+#: include/class-alpha-google-map.php:261
 msgid "\"%1$s\" requires \"%2$s\" version %3$s or greater."
 msgstr ""
 
-#: include/class-alpha-google-map.php:201
-msgid "Elementor"
-msgstr ""
-
-#. translators: 1: Plugin name 2: Required PHP version
-#: include/class-alpha-google-map.php:220
-msgid "\"%1$s\" requires PHP version %3$s or greater."
+#: include/class-alpha-google-map.php:263
+msgid "PHP"
 msgstr ""

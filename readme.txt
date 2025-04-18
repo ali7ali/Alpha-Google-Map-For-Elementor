@@ -3,9 +3,9 @@ Author: ali7ali
 Contributors: ali7ali
 Tags: google-map, google, elementor, maps, page builder
 Requires at least: 6.0
-Tested up to: 6.7
+Tested up to: 6.8
 Requires PHP: 7.4
-Stable tag: 1.2.2
+Stable tag: 1.3
 License: GPLv3
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
 
@@ -63,8 +63,9 @@ For community support, use the WordPress.org forums. Report bugs on [GitHub Issu
 
 == Upgrade Notice ==
 
-= 1.2.2 =
-Compatibility for the updated Elementor colors and typography schema.
+= 1.3 =
+Compatibility for WP 6.8
+Feature: One finger scroll on mobile (GestureHandling)
 
 == Frequently Asked Questions ==
 
@@ -83,6 +84,10 @@ No. Elementor Website Builder must be installed and activated.
 7. **Pin Gallery.** Choose and add images to each pin gallery.
 
 == Changelog ==
+
+= 1.3 - 2025-04-19 =
+* Compatibility for WP 6.8 and
+* Feature: One finger scroll on mobile (GestureHandling)
 
 = 1.2.2 - 2024-12-18 =
 * Compatibility for the updated Elementor colors and typography schema.

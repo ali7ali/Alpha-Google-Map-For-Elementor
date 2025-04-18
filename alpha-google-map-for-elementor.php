@@ -1,15 +1,16 @@
 <?php
-
 /**
  * Plugin Name: Alpha Google Map For Elementor
- * Plugin URI: https://alphatrio.net
+ * Plugin URI: https://ali-ali.org/
  * Description: Premium Google Map features for WordPress.
  * Author:      Ali Ali
  * Author URI:  https://github.com/Ali7Ali
- * Version:     1.2.2
+ * Version:     1.3
  * Text Domain: alpha-google-map-for-elementor
  * Domain Path: /languages
  * License: GPLv3
+ *
+ * @package    AlphaGoogleMap
  * */
 
 /*
@@ -30,26 +31,31 @@ along with this program; if not, write to the Free Software
 Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
  */
 
-if (!defined('ABSPATH')) {
-    exit; // Exit if accessed directly.
+if ( ! defined( 'ABSPATH' ) ) {
+	exit; // Exit if accessed directly.
 }
 
-define('ALPHAMAP_VERSION', '1.2.2');
-define('ALPHAMAP_ADDONS_PL_ROOT', __FILE__);
-define('ALPHAMAP_PL_URL', plugins_url('/', ALPHAMAP_ADDONS_PL_ROOT));
-define('ALPHAMAP_PL_PATH', plugin_dir_path(ALPHAMAP_ADDONS_PL_ROOT));
-define('ALPHAMAP_PL_ASSETS', trailingslashit(ALPHAMAP_PL_URL . 'assets'));
-define('ALPHAMAP_PL_INCLUDE', trailingslashit(ALPHAMAP_PL_PATH . 'include'));
-define('ALPHAMAP_PL_LANGUAGES', trailingslashit(ALPHAMAP_PL_PATH . 'languages'));
-define('ALPHAMAP_PLUGIN_BASE', plugin_basename(ALPHAMAP_ADDONS_PL_ROOT));
+define( 'ALPHAMAP_VERSION', '1.3' );
+define( 'ALPHAMAP_ADDONS_PL_ROOT', __FILE__ );
+define( 'ALPHAMAP_PL_URL', plugins_url( '/', ALPHAMAP_ADDONS_PL_ROOT ) );
+define( 'ALPHAMAP_PL_PATH', plugin_dir_path( ALPHAMAP_ADDONS_PL_ROOT ) );
+define( 'ALPHAMAP_PL_ASSETS', trailingslashit( ALPHAMAP_PL_URL . 'assets' ) );
+define( 'ALPHAMAP_PL_INCLUDE', trailingslashit( ALPHAMAP_PL_PATH . 'include' ) );
+define( 'ALPHAMAP_PL_LANGUAGES', trailingslashit( ALPHAMAP_PL_PATH . 'languages' ) );
+define( 'ALPHAMAP_PLUGIN_BASE', plugin_basename( ALPHAMAP_ADDONS_PL_ROOT ) );
 
-function alpha_google_map_addon()
-{
+/**
+ * Initializes and runs the Alpha Google Map add-on by including the required plugin file
+ * and invoking the instance of the Alpha_Google_Map class.
+ *
+ * @return void
+ */
+function alpha_google_map_addon() {
 
-    // Load plugin file
-    include_once ALPHAMAP_PL_INCLUDE . '/class-alpha-google-map.php';
+	// Load plugin file.
+	include_once ALPHAMAP_PL_INCLUDE . '/class-alpha-google-map.php';
 
-    // Run the plugin
-    \AlphaGoogleMap\Alpha_Google_Map::instance();
+	// Run the plugin.
+	\AlphaGoogleMap\Alpha_Google_Map::instance();
 }
-add_action('plugins_loaded', 'alpha_google_map_addon');
+add_action( 'plugins_loaded', 'alpha_google_map_addon' );
