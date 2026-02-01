@@ -72,6 +72,24 @@ class Alpha_Google_Map_Widget extends Widget_Base {
 	}
 
 	/**
+	 * Widget styles dependencies.
+	 *
+	 * @return array
+	 */
+	public function get_style_depends(): array {
+		return array( 'alphamap-widget' );
+	}
+
+	/**
+	 * Widget script dependencies.
+	 *
+	 * @return array
+	 */
+	public function get_script_depends(): array {
+		return array( 'alphamap' );
+	}
+
+	/**
 	 * Register widget controls.
 	 */
 	protected function register_controls(): void {
@@ -300,6 +318,16 @@ class Alpha_Google_Map_Widget extends Widget_Base {
 					'hybrid'    => __( 'Hybrid', 'alpha-google-map-for-elementor' ),
 				),
 				'default' => 'roadmap',
+			)
+		);
+
+		$this->add_control(
+			'alpha_map_id',
+			array(
+				'label'       => __( 'Map ID (Cloud Styling)', 'alpha-google-map-for-elementor' ),
+				'type'        => Controls_Manager::TEXT,
+				'description' => __( 'Optional. Provide a Google Maps Map ID for Cloud-based map styling.', 'alpha-google-map-for-elementor' ),
+				'label_block' => true,
 			)
 		);
 
@@ -956,47 +984,34 @@ class Alpha_Google_Map_Widget extends Widget_Base {
 	protected function render() {
 		$settings = $this->get_settings_for_display();
 
-		$map_pins = $settings['alpha_map_pins'];
+		$map_pins = ! empty( $settings['alpha_map_pins'] ) && is_array( $settings['alpha_map_pins'] ) ? $settings['alpha_map_pins'] : array();
 
-		$gesture = 'yes' === $settings['alpha_map_gesture_handling'] ? 'greedy' : 'auto';
-
-		$street_view = 'yes' === $settings['alpha_map_option_streeview'] ? 'true' : 'false';
-
-		$scroll_wheel = 'yes' === $settings['alpha_map_option_mapscroll'] ? 'true' : 'false';
-
-		$full_screen = 'yes' === $settings['alpha_map_option_fullscreen_control'] ? 'true' : 'false';
-
-		$zoom_control = 'yes' === $settings['alpha_map_option_zoom_controls'] ? 'true' : 'false';
-
-		$type_control = 'yes' === $settings['alpha_map_option_map_type_control'] ? 'true' : 'false';
-
-		$automatic_open = 'yes' === $settings['alpha_map_marker_open'] ? 'true' : 'false';
-
-		$hover_open = 'yes' === $settings['alpha_map_marker_hover_open'] ? 'true' : 'false';
-
-		$hover_close = 'yes' === $settings['alpha_map_marker_mouse_out'] ? 'true' : 'false';
+		$gesture = ! empty( $settings['alpha_map_gesture_handling'] ) && 'yes' === $settings['alpha_map_gesture_handling'] ? 'greedy' : 'auto';
 
 		$locationlat = ! empty( $settings['alpha_location_lat'] ) ? sanitize_text_field( $settings['alpha_location_lat'] ) : '18.591212';
 
 		$locationlong = ! empty( $settings['alpha_location_long'] ) ? sanitize_text_field( $settings['alpha_location_long'] ) : '73.741261';
 
-		$marker_width = ! empty( $settings['alpha_markers_width'] ) ? $settings['alpha_markers_width'] : 1000;
+		$marker_width = ! empty( $settings['alpha_markers_width'] ) ? (int) $settings['alpha_markers_width'] : 1000;
+
+		$map_id = ! empty( $settings['alpha_map_id'] ) ? sanitize_text_field( $settings['alpha_map_id'] ) : '';
 
 		$map_settings = array(
-			'zoom'              => $settings['alpha_map_zoom']['size'],
-			'maptype'           => $settings['alpha_map_type'],
-			'streetViewControl' => $street_view,
+			'zoom'              => isset( $settings['alpha_map_zoom']['size'] ) ? (int) $settings['alpha_map_zoom']['size'] : 12,
+			'maptype'           => isset( $settings['alpha_map_type'] ) ? sanitize_text_field( $settings['alpha_map_type'] ) : 'roadmap',
+			'streetViewControl' => ! empty( $settings['alpha_map_option_streeview'] ) && 'yes' === $settings['alpha_map_option_streeview'],
 			'gestureHandling'   => $gesture,
 			'locationlat'       => $locationlat,
 			'locationlong'      => $locationlong,
-			'scrollwheel'       => $scroll_wheel,
-			'fullScreen'        => $full_screen,
-			'zoomControl'       => $zoom_control,
-			'typeControl'       => $type_control,
-			'automaticOpen'     => $automatic_open,
-			'hoverOpen'         => $hover_open,
-			'hoverClose'        => $hover_close,
-			'drag'              => $settings['disable_drag'],
+			'scrollwheel'       => ! empty( $settings['alpha_map_option_mapscroll'] ) && 'yes' === $settings['alpha_map_option_mapscroll'],
+			'fullScreen'        => ! empty( $settings['alpha_map_option_fullscreen_control'] ) && 'yes' === $settings['alpha_map_option_fullscreen_control'],
+			'zoomControl'       => ! empty( $settings['alpha_map_option_zoom_controls'] ) && 'yes' === $settings['alpha_map_option_zoom_controls'],
+			'typeControl'       => ! empty( $settings['alpha_map_option_map_type_control'] ) && 'yes' === $settings['alpha_map_option_map_type_control'],
+			'automaticOpen'     => ! empty( $settings['alpha_map_marker_open'] ) && 'yes' === $settings['alpha_map_marker_open'],
+			'hoverOpen'         => ! empty( $settings['alpha_map_marker_hover_open'] ) && 'yes' === $settings['alpha_map_marker_hover_open'],
+			'hoverClose'        => ! empty( $settings['alpha_map_marker_mouse_out'] ) && 'yes' === $settings['alpha_map_marker_mouse_out'],
+			'drag'              => ! empty( $settings['disable_drag'] ) && 'yes' === $settings['disable_drag'],
+			'mapId'             => $map_id,
 		);
 
 		$this->add_render_attribute(
@@ -1008,7 +1023,7 @@ class Alpha_Google_Map_Widget extends Widget_Base {
 		);
 
 		?>
-		<div class="alpha-map-container" id="alpha-map-container">
+		<div class="alpha-map-container" id="<?php echo esc_attr( 'alpha-map-container-' . sanitize_html_class( $this->get_id() ) ); ?>">
 			<div class="alpha-google-map-title">
 				<?php
 				if ( ! empty( $settings['title'] ) ) {
@@ -1102,9 +1117,10 @@ class Alpha_Google_Map_Widget extends Widget_Base {
 						);
 
 						// Sanitize IDs.
-						$ids        = array_map( 'intval', wp_list_pluck( $pin['pin_desc_gallery'], 'id' ) );
+						$gallery_ids = ! empty( $pin['pin_desc_gallery'] ) && is_array( $pin['pin_desc_gallery'] ) ? $pin['pin_desc_gallery'] : array();
+						$ids         = array_map( 'intval', wp_list_pluck( $gallery_ids, 'id' ) );
 						$count      = count( $ids );
-						$data_count = absint( $count - 4 );
+						$data_count = max( 0, $count - 4 );
 						$this->add_render_attribute( 'shortcode' . $index, 'ids', implode( ',', $ids ) );
 
 						?>

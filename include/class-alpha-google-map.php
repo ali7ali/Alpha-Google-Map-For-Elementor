@@ -80,13 +80,6 @@ final class Alpha_Google_Map {
 	}
 
 	/**
-	 * Load the plugin text domain.
-	 */
-	public function i18n(): void {
-		load_plugin_textdomain( 'alpha-google-map-for-elementor', false, ALPHAMAP_PL_LANGUAGES );
-	}
-
-	/**
 	 * Compatibility Checks
 	 *
 	 * Checks whether the site meets the addon requirement.
@@ -121,52 +114,22 @@ final class Alpha_Google_Map {
 	 * Initialize the plugin.
 	 */
 	public function init(): void {
-		$this->i18n();
-
-		$this->add_assets();
-		add_action( 'elementor/frontend/after_enqueue_styles', array( $this, 'frontend_styles' ) );
-		add_action( 'elementor/frontend/after_register_scripts', array( $this, 'frontend_scripts' ) );
+		add_action( 'elementor/frontend/after_register_styles', array( $this, 'register_frontend_styles' ) );
+		add_action( 'elementor/frontend/after_register_scripts', array( $this, 'register_frontend_scripts' ) );
 
 		add_action( 'elementor/widgets/register', array( $this, 'register_widgets' ) );
 	}
 
 	/**
-	 * Loading plugin media assets.
+	 * Register plugin styles for Elementor widgets.
 	 */
-	public function add_assets(): void {
-		if ( ! function_exists( 'WP_Filesystem' ) ) {
-			include_once ABSPATH . 'wp-admin/includes/file.php';
-		}
-		WP_Filesystem();
-		global $wp_filesystem;
-
-		$upload_dir = wp_upload_dir( null, true );
-		$dir        = trailingslashit( $upload_dir['basedir'] ) . 'alpha-map/';
-
-		if ( ! $wp_filesystem->is_dir( $dir ) ) {
-			$wp_filesystem->mkdir( $dir );
-		}
-
-		$plugin_assets_dir = ALPHAMAP_PL_ASSETS . 'img/';
-
-		$files = array(
-			'alpha-pin.png',
-			'alpha-pin-hover.png',
+	public function register_frontend_styles(): void {
+		wp_register_style(
+			'alphamap-widget',
+			ALPHAMAP_PL_ASSETS . 'css/alpha-map-widget.css',
+			array(),
+			ALPHAMAP_VERSION
 		);
-
-		foreach ( $files as $file ) {
-			$destination = $dir . $file;
-			if ( ! $wp_filesystem->exists( $destination ) ) {
-				$source = $plugin_assets_dir . $file;
-
-				if ( $wp_filesystem->exists( $source ) ) {
-					$contents = $wp_filesystem->get_contents( $source );
-					if ( ! empty( $contents ) ) {
-						$wp_filesystem->put_contents( $destination, $contents, FS_CHMOD_FILE );
-					}
-				}
-			}
-		}
 	}
 
 	/**
@@ -279,21 +242,35 @@ final class Alpha_Google_Map {
 	}
 
 	/**
-	 * Loading plugin css.
+	 * Register plugin scripts for Elementor widgets.
 	 */
-	public function frontend_styles(): void {
-		wp_enqueue_style( 'alphamap-widget', ALPHAMAP_PL_ASSETS . 'css/alpha-map-widget.css', '', ALPHAMAP_VERSION );
-	}
+	public function register_frontend_scripts(): void {
+		$api_key     = trim( (string) get_option( 'elementor_google_maps_api_key' ) );
+		$maps_handle = 'alpha-google-maps-api';
+		$script_deps = array( 'jquery' );
 
-	/**
-	 * Loading plugin JavaScript.
-	 */
-	public function frontend_scripts(): void {
-		// Script register.
-		wp_enqueue_script(
+		if ( ! empty( $api_key ) ) {
+			$maps_api_url = $this->build_maps_api_url( $api_key );
+
+			if ( ! wp_script_is( $maps_handle, 'registered' ) ) {
+				wp_register_script(
+					$maps_handle,
+					$maps_api_url,
+					array(),
+					ALPHAMAP_VERSION,
+					array(
+						'in_footer' => true,
+						'strategy'  => 'defer',
+					)
+				);
+			}
+			$script_deps[] = $maps_handle;
+		}
+
+		wp_register_script(
 			'alphamap',
 			ALPHAMAP_PL_ASSETS . 'js/alpha-map.js',
-			array( 'jquery', 'alpha-api-js' ),
+			$script_deps,
 			ALPHAMAP_VERSION,
 			array(
 				'in_footer' => true,
@@ -301,20 +278,128 @@ final class Alpha_Google_Map {
 			)
 		);
 
-		// get an option.
-		$api_key = get_option( 'elementor_google_maps_api_key' );
+		$locale   = determine_locale();
+		$language = $this->get_language_from_locale( $locale );
+		$region   = $this->get_region_from_locale( $locale );
 
-		$api = sprintf( 'https://maps.googleapis.com/maps/api/js?key=%1$s&language=en&callback=blur', $api_key );
-		wp_enqueue_script(
-			'alpha-api-js',
-			$api,
-			array(),
-			'1.0.0',
-			array(
-				'in_footer' => true,
-				'strategy'  => 'defer',
-			)
+		$config = array(
+			'hasApiKey'            => ! empty( $api_key ),
+			'missingApiKeyMessage' => __( 'Google Maps API key is missing. Set it under Elementor > Settings > Integrations.', 'alpha-google-map-for-elementor' ),
+			'language'             => $language,
+			'region'               => $region,
 		);
+
+		wp_localize_script( 'alphamap', 'AlphaMapConfig', $config );
+	}
+
+	/**
+	 * Build the Google Maps API URL using locale-aware params.
+	 *
+	 * @param string $api_key API key.
+	 */
+	private function build_maps_api_url( string $api_key ): string {
+		$locale   = determine_locale();
+		$language = $this->get_language_from_locale( $locale );
+		$region   = $this->get_region_from_locale( $locale );
+
+		$params = array(
+			'key'     => $api_key,
+			'v'       => 'weekly',
+			'loading' => 'async',
+		);
+
+		if ( $language ) {
+			$params['language'] = $language;
+		}
+
+		if ( $region ) {
+			$params['region'] = $region;
+		}
+
+		$params = apply_filters( 'alphamap_google_maps_params', $params );
+
+		return add_query_arg( $params, 'https://maps.googleapis.com/maps/api/js' );
+	}
+
+	/**
+	 * Extract language code from locale.
+	 *
+	 * @param string $locale WordPress locale.
+	 */
+	private function get_language_from_locale( string $locale ): string {
+		if ( preg_match( '/^[a-zA-Z]{2}/', $locale, $matches ) ) {
+			return strtolower( $matches[0] );
+		}
+		return '';
+	}
+
+	/**
+	 * Extract region code from locale.
+	 *
+	 * @param string $locale WordPress locale.
+	 */
+	private function get_region_from_locale( string $locale ): string {
+		if ( preg_match( '/_[a-zA-Z]{2}$/', $locale, $matches ) ) {
+			return strtoupper( str_replace( '_', '', $matches[0] ) );
+		}
+		return '';
+	}
+
+	/**
+	 * Plugin activation tasks.
+	 */
+	public static function activate(): void {
+		self::copy_pin_assets();
+	}
+
+	/**
+	 * Copy default pin assets to the uploads folder for backward compatibility.
+	 */
+	private static function copy_pin_assets(): void {
+		if ( ! function_exists( 'WP_Filesystem' ) ) {
+			include_once ABSPATH . 'wp-admin/includes/file.php';
+		}
+
+		WP_Filesystem();
+		global $wp_filesystem;
+
+		if ( ! $wp_filesystem ) {
+			return;
+		}
+
+		$upload_dir = wp_upload_dir( null, true );
+
+		if ( empty( $upload_dir['basedir'] ) ) {
+			return;
+		}
+
+		$destination_dir = trailingslashit( $upload_dir['basedir'] ) . 'alpha-map/';
+
+		if ( ! $wp_filesystem->is_dir( $destination_dir ) ) {
+			$wp_filesystem->mkdir( $destination_dir );
+		}
+
+		$source_dir = trailingslashit( ALPHAMAP_PL_PATH . 'assets/img' );
+
+		$files = array(
+			'alpha-pin.png',
+			'alpha-pin-hover.png',
+		);
+
+		foreach ( $files as $file ) {
+			$source      = $source_dir . $file;
+			$destination = $destination_dir . $file;
+
+			if ( $wp_filesystem->exists( $destination ) || ! $wp_filesystem->exists( $source ) ) {
+				continue;
+			}
+
+			$contents = $wp_filesystem->get_contents( $source );
+
+			if ( ! empty( $contents ) ) {
+				$wp_filesystem->put_contents( $destination, $contents, FS_CHMOD_FILE );
+			}
+		}
 	}
 
 	/**

@@ -3,9 +3,9 @@ Author: ali7ali
 Contributors: ali7ali
 Tags: google-map, google, elementor, maps, page builder
 Requires at least: 6.0
-Tested up to: 6.8
+Tested up to: 6.9
 Requires PHP: 7.4
-Stable tag: 1.3
+Stable tag: 1.4.0
 License: GPLv3
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
 
@@ -20,6 +20,7 @@ This plugin provides essential Google Maps functionalities with additional premi
 - Custom map pins with hover and active states
 - Customizable info-box with image gallery support
 - Extensive map controls
+- Optional Map ID (Cloud Styling) support with a locale-aware Google Maps loader
 - Responsive live editing within Elementor
 - Compatibility with the latest Google Maps API standards
 
@@ -63,9 +64,8 @@ For community support, use the WordPress.org forums. Report bugs on [GitHub Issu
 
 == Upgrade Notice ==
 
-= 1.3 =
-Compatibility for WP 6.8
-Feature: One finger scroll on mobile (GestureHandling)
+= 1.4 =
+Modernized Google Maps loader
 
 == Frequently Asked Questions ==
 
@@ -84,6 +84,12 @@ No. Elementor Website Builder must be installed and activated.
 7. **Pin Gallery.** Choose and add images to each pin gallery.
 
 == Changelog ==
+
+= 1.4.0 - 2026-02-01 =
+* Modernized Google Maps loader (async, locale-aware) with optional Map ID support.
+* Conditional Elementor asset loading to avoid loading scripts/styles on pages without the widget.
+* Improved multi-instance safety and marker/gallery handling.
+* Activation-only copy of default pin assets for backward compatibility.
 
 = 1.3 - 2025-04-19 =
 * Compatibility for WP 6.8 and

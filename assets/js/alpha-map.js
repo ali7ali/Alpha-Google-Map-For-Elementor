@@ -1,165 +1,254 @@
-jQuery(window).on("elementor/frontend/init", function () {
+(function ($) {
+	const MAP_READY_MAX_TRIES = 20;
+	const MAP_READY_DELAY = 150;
 
-    elementorFrontend.hooks.addAction(
-        "frontend/element_ready/alpha-google-map.default",
-        function ($scope, $) {
+	const waitForGoogleMaps = () =>
+		new Promise((resolve, reject) => {
+			let attempts = 0;
+			const timer = setInterval(() => {
+				attempts += 1;
+				if (
+					window.google &&
+					window.google.maps &&
+					typeof window.google.maps.Map === 'function'
+				) {
+					clearInterval(timer);
+					resolve(window.google.maps);
+					return;
+				}
 
-            var mapElement = $scope.find(".alpha_map_height");
+				if (attempts >= MAP_READY_MAX_TRIES) {
+					clearInterval(timer);
+					reject(new Error('Google Maps failed to load'));
+				}
+			}, MAP_READY_DELAY);
+		});
 
-            var mapSettings = mapElement.data("settings");
+	const applyGalleryOverlay = ($root) => {
+		$root.find('.alpha-image-gallery').each(function () {
+			const $gallery = $(this);
+			const remaining = parseInt($gallery.attr('data-count'), 10) || 0;
 
-            var mapStyle = mapElement.data("style");
+			if (remaining <= 0) {
+				return;
+			}
 
-            var alphaMapMarkers = [];
+			const $figures = $gallery.find('figure');
+			const $items = $figures.length ? $figures : $gallery.find('.gallery-item');
+			const $target = $items.eq(3);
 
-            var selectedMarker = {};
+			if (!$target.length || $target.find('.alpha-gallery-more').length) {
+				return;
+			}
 
-            alphaMap = newMap(mapElement, mapSettings, mapStyle);
+			$('<div class="alpha-gallery-more" />')
+				.text(`${remaining} more`)
+				.appendTo($target);
+		});
+	};
 
-            function newMap(map, settings, mapStyle) {
-                var scrollwheel = JSON.parse(settings["scrollwheel"]);
-                var streetViewControl = JSON.parse(settings["streetViewControl"]);
-                var fullscreenControl = JSON.parse(settings["fullScreen"]);
-                var zoomControl = JSON.parse(settings["zoomControl"]);
-                var mapTypeControl = JSON.parse(settings["typeControl"]);
-                var locationLat = JSON.parse(settings["locationlat"]);
-                var locationLong = JSON.parse(settings["locationlong"]);
-                var autoOpen = JSON.parse(settings["automaticOpen"]);
-                var hoverOpen = JSON.parse(settings["hoverOpen"]);
-                var hoverClose = JSON.parse(settings["hoverClose"]);
-                var args = {
-                    zoom: settings["zoom"],
-                    mapTypeId: settings["maptype"],
-                    center: { lat: locationLat, lng: locationLong },
-                    scrollwheel: scrollwheel,
-                    streetViewControl: streetViewControl,
-                    fullscreenControl: fullscreenControl,
-                    zoomControl: zoomControl,
-                    mapTypeControl: mapTypeControl,
-                    styles: mapStyle
-                };
+	const addMarker = ({ $pin, map, settings, state }) => {
+		const lat = parseFloat($pin.attr('data-lat'));
+		const lng = parseFloat($pin.attr('data-lng'));
 
-                if ( settings.gestureHandling ) {
-                    args.gestureHandling = settings.gestureHandling;
-                }
+		if (Number.isNaN(lat) || Number.isNaN(lng)) {
+			return;
+		}
 
-                if ( "yes" === settings.drag ) {
-                    args.gestureHandling = 'none';
-                }
+		const iconUrl = $pin.attr('data-icon');
+		const hoverIconUrl = $pin.attr('data-icon-active');
+		const iconSize = parseInt($pin.attr('data-icon-size'), 10);
+		let icon = null;
 
-                var markers = map.find(".alpha-pin");
+		if (iconUrl) {
+			icon = { url: iconUrl };
 
-                var map = new google.maps.Map(map[0], args);
+			if (iconSize) {
+				icon.scaledSize = new google.maps.Size(iconSize, iconSize);
+				icon.origin = new google.maps.Point(0, 0);
+				icon.anchor = new google.maps.Point(iconSize / 2, iconSize);
+			}
 
-                map.markers = [];
-                var prev_infowindow = false;
-                // add markers
-                markers.each(function () {
-                    add_marker(jQuery(this), map, autoOpen, hoverOpen, hoverClose);
-                });
+			if (hoverIconUrl) {
+				icon.hover = hoverIconUrl;
+			}
+		}
 
-                return map;
-            }
+		const markerOptions = {
+			position: { lat, lng },
+			map,
+			marker_id: $pin.attr('data-id'),
+		};
 
-            function add_marker(pin, map, autoOpen, hoverOpen, hoverClose) {
-                var latlng = new google.maps.LatLng(
-                    pin.attr("data-lat"),
-                    pin.attr("data-lng")
-                ),
-                    icon_img = pin.attr("data-icon"),
-                    icon_hover_img = pin.attr("data-icon-active"),
-                    maxWidth = pin.attr("data-max-width"),
-                    customID = pin.attr("data-id"),
-                    iconSize = parseInt(pin.attr("data-icon-size"));
+		if (icon) {
+			markerOptions.icon = icon;
+		}
 
-                if (icon_img != "") {
-                    var icon = {
-                        url: pin.attr("data-icon")
-                    };
+		const marker = new google.maps.Marker(markerOptions);
 
-                    if (icon_hover_img != "") {
-                        icon.hover = pin.attr("data-icon-active");
-                    }
+		const hasInfo =
+			$pin.find('.alpha-map-info-title').length ||
+			$pin.find('.alpha-map-info-desc').length ||
+			$pin.find('.alpha-map-info-time-desc').length;
 
-                    if (iconSize) {
+		if (!hasInfo) {
+			return;
+		}
 
-                        icon.scaledSize = new google.maps.Size(iconSize, iconSize);
-                        icon.origin = new google.maps.Point(0, 0);
-                        icon.anchor = new google.maps.Point(iconSize / 2, iconSize);
-                    }
-                }
+		applyGalleryOverlay($pin);
 
+		const infoWindow = new google.maps.InfoWindow({
+			maxWidth: parseInt($pin.attr('data-max-width'), 10) || undefined,
+			content: $pin.html(),
+		});
 
-                // create marker
-                var marker = new google.maps.Marker({
-                    position: latlng,
-                    map: map,
-                    icon: icon,
-                    marker_id: customID
-                });
+		const defaultIconUrl = icon && icon.url ? icon.url : null;
+		const activeIconUrl = icon && icon.hover ? icon.hover : null;
 
+		if (settings.automaticOpen) {
+			infoWindow.open(map, marker);
+			state.activeInfo = infoWindow;
+			state.activeMarker = marker;
+		}
 
-                // add to array
-                map.markers.push(marker);
+		if (settings.hoverOpen) {
+			marker.addListener('mouseover', () => {
+				if (activeIconUrl && marker.setIcon) {
+					marker.setIcon(activeIconUrl);
+				}
+				infoWindow.open(map, marker);
+			});
 
-                alphaMapMarkers.push(marker);
+			if (settings.hoverClose) {
+				marker.addListener('mouseout', () => {
+					if (defaultIconUrl && marker.setIcon) {
+						marker.setIcon(defaultIconUrl);
+					}
+					infoWindow.close();
+				});
+			}
+		}
 
+		marker.addListener('click', () => {
+			if (state.activeMarker && state.activeMarker !== marker) {
+				if (state.activeMarker.setIcon && defaultIconUrl) {
+					state.activeMarker.setIcon(defaultIconUrl);
+				}
+				if (state.activeInfo) {
+					state.activeInfo.close();
+				}
+			}
 
-                // if marker contains HTML, add it to an infoWindow
-                if (
-                    pin.find(".alpha-map-info-title").html() ||
-                    pin.find(".alpha-map-info-desc").html()
-                ) {
-                    // create info window
-                    var infowindow = new google.maps.InfoWindow({
-                        maxWidth: maxWidth,
-                        content: pin.html()
-                    });
-                    var icon_url = marker.icon.url;
-                    var icon_onHover = marker.icon.hover;
-                    if (autoOpen) {
-                        infowindow.open(map, marker);
-                    }
-                    if (hoverOpen) {
-                        google.maps.event.addListener(marker, "mouseover", function () {
-                            marker.setIcon(icon_onHover);
-                            infowindow.open(map, marker);
-                        });
-                        if (hoverClose) {
-                            google.maps.event.addListener(marker, "mouseout", function () {
-                                marker.setIcon(icon_url);
-                                infowindow.close(map, marker);
-                            });
-                        }
-                    }
-                    // show info window when marker is clicked
-                    google.maps.event.addListener(marker, "click", function () {
-                        if (typeof prev_infowindow !== 'undefined' && typeof selectedMarker !== 'undefined' && typeof selectedMarker.marker !== 'undefined') {
-                            selectedMarker.marker.setIcon(selectedMarker.icon);
-                            prev_infowindow.close();
-                        }
-                        marker.setIcon(icon_onHover);
-                        selectedMarker.marker = marker;
-                        selectedMarker.icon = icon_url;
-                        infowindow.open(map, marker);
-                        prev_infowindow = infowindow;
-                    });
-                    google.maps.event.addListener(map, "click", function (event) {
-                        if (selectedMarker) {
-                            selectedMarker.marker.setIcon(selectedMarker.icon);
-                        }
-                        infowindow.close();
-                    });
-                }
-            }
-        }
-    );
-});
+			if (activeIconUrl && marker.setIcon) {
+				marker.setIcon(activeIconUrl);
+			}
 
-jQuery(function () {
-    jQuery("body").click(function (e) {
-        let count = jQuery('.alpha-image-gallery').attr("data-count");
-        count = parseInt(count);
-        jQuery('.alpha-image-gallery').find("figure:nth-child(4)").append('<div style="position: absolute; color: #fff; top: 50%; left: 50%; transform: translate(-50%, -50%); font-size: 16px; font-weight: 600; white-space: nowrap;">' + count + ' more </div>');
-    });
-});
+			state.activeMarker = marker;
+			state.activeInfo = infoWindow;
+			infoWindow.open(map, marker);
+		});
+
+		map.addListener('click', () => {
+			if (state.activeMarker && defaultIconUrl && state.activeMarker.setIcon) {
+				state.activeMarker.setIcon(defaultIconUrl);
+			}
+			if (state.activeInfo) {
+				state.activeInfo.close();
+			}
+		});
+	};
+
+	const initMapInstance = ($scope) => {
+		const $mapElement = $scope.find('.alpha_map_height');
+
+		if (!$mapElement.length) {
+			return;
+		}
+
+		const settings = $mapElement.data('settings') || {};
+		const centerLat = parseFloat(settings.locationlat);
+		const centerLng = parseFloat(settings.locationlong);
+
+		if (Number.isNaN(centerLat) || Number.isNaN(centerLng)) {
+			return;
+		}
+
+		const mapOptions = {
+			zoom: Number(settings.zoom) || 12,
+			mapTypeId: settings.maptype || 'roadmap',
+			center: { lat: centerLat, lng: centerLng },
+			scrollwheel: Boolean(settings.scrollwheel),
+			streetViewControl: Boolean(settings.streetViewControl),
+			fullscreenControl: Boolean(settings.fullScreen),
+			zoomControl: Boolean(settings.zoomControl),
+			mapTypeControl: Boolean(settings.typeControl),
+			gestureHandling: settings.gestureHandling || 'auto',
+		};
+
+		if (settings.mapId) {
+			mapOptions.mapId = settings.mapId;
+		}
+
+		if (settings.drag) {
+			mapOptions.gestureHandling = 'none';
+			mapOptions.draggable = false;
+		}
+
+		const mapStyle = $mapElement.data('style');
+		if (mapStyle) {
+			mapOptions.styles = mapStyle;
+		}
+
+		// Capture pins before Google Maps mutates the DOM.
+		const $pins = $mapElement.find('.alpha-pin');
+
+		const map = new google.maps.Map($mapElement[0], mapOptions);
+		const state = {
+			activeMarker: null,
+			activeInfo: null,
+		};
+
+		$pins.each(function () {
+			addMarker({
+				$pin: $(this),
+				map,
+				settings: {
+					automaticOpen: Boolean(settings.automaticOpen),
+					hoverOpen: Boolean(settings.hoverOpen),
+					hoverClose: Boolean(settings.hoverClose),
+				},
+				state,
+			});
+		});
+
+		applyGalleryOverlay($scope);
+	};
+
+	const bootstrap = () => {
+		elementorFrontend.hooks.addAction('frontend/element_ready/alpha-google-map.default', ($scope) => {
+			const config = window.AlphaMapConfig || {};
+
+			if (!config.hasApiKey) {
+				if (config.missingApiKeyMessage) {
+					console.warn(config.missingApiKeyMessage);
+				}
+				return;
+			}
+
+			const hasMapCtor =
+				window.google &&
+				window.google.maps &&
+				typeof window.google.maps.Map === 'function';
+
+			const ready = hasMapCtor ? Promise.resolve(window.google.maps) : waitForGoogleMaps();
+
+			ready
+				.then(() => initMapInstance($scope))
+				.catch(() => {
+					console.warn('Alpha Google Map: Google Maps failed to load.');
+				});
+		});
+	};
+
+	$(window).on('elementor/frontend/init', bootstrap);
+})(jQuery);

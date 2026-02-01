@@ -5,7 +5,7 @@
  * Description: Premium Google Map features for WordPress.
  * Author:      Ali Ali
  * Author URI:  https://github.com/Ali7Ali
- * Version:     1.3
+ * Version:     1.4.0
  * Text Domain: alpha-google-map-for-elementor
  * Domain Path: /languages
  * License: GPLv3
@@ -35,7 +35,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit; // Exit if accessed directly.
 }
 
-define( 'ALPHAMAP_VERSION', '1.3' );
+define( 'ALPHAMAP_VERSION', '1.4.0' );
 define( 'ALPHAMAP_ADDONS_PL_ROOT', __FILE__ );
 define( 'ALPHAMAP_PL_URL', plugins_url( '/', ALPHAMAP_ADDONS_PL_ROOT ) );
 define( 'ALPHAMAP_PL_PATH', plugin_dir_path( ALPHAMAP_ADDONS_PL_ROOT ) );
@@ -43,6 +43,18 @@ define( 'ALPHAMAP_PL_ASSETS', trailingslashit( ALPHAMAP_PL_URL . 'assets' ) );
 define( 'ALPHAMAP_PL_INCLUDE', trailingslashit( ALPHAMAP_PL_PATH . 'include' ) );
 define( 'ALPHAMAP_PL_LANGUAGES', trailingslashit( ALPHAMAP_PL_PATH . 'languages' ) );
 define( 'ALPHAMAP_PLUGIN_BASE', plugin_basename( ALPHAMAP_ADDONS_PL_ROOT ) );
+
+/**
+ * Plugin activation hook.
+ */
+function alpha_google_map_activate(): void {
+	include_once ALPHAMAP_PL_INCLUDE . '/class-alpha-google-map.php';
+
+	if ( class_exists( '\AlphaGoogleMap\Alpha_Google_Map' ) ) {
+		\AlphaGoogleMap\Alpha_Google_Map::activate();
+	}
+}
+register_activation_hook( __FILE__, 'alpha_google_map_activate' );
 
 /**
  * Initializes and runs the Alpha Google Map add-on by including the required plugin file
