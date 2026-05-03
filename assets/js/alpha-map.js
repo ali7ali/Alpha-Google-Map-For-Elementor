@@ -102,8 +102,19 @@
 			content: $pin.html(),
 		});
 
-		const defaultIconUrl = icon && icon.url ? icon.url : null;
-		const activeIconUrl = icon && icon.hover ? icon.hover : null;
+		const buildIconObject = (url) => {
+			if (!url) return null;
+			const obj = { url };
+			if (iconSize) {
+				obj.scaledSize = new google.maps.Size(iconSize, iconSize);
+				obj.origin = new google.maps.Point(0, 0);
+				obj.anchor = new google.maps.Point(iconSize / 2, iconSize);
+			}
+			return obj;
+		};
+
+		const defaultIcon = icon && icon.url ? buildIconObject(icon.url) : null;
+		const activeIcon = icon && icon.hover ? buildIconObject(icon.hover) : null;
 
 		if (settings.automaticOpen) {
 			infoWindow.open(map, marker);
@@ -113,16 +124,16 @@
 
 		if (settings.hoverOpen) {
 			marker.addListener('mouseover', () => {
-				if (activeIconUrl && marker.setIcon) {
-					marker.setIcon(activeIconUrl);
+				if (activeIcon && marker.setIcon) {
+					marker.setIcon(activeIcon);
 				}
 				infoWindow.open(map, marker);
 			});
 
 			if (settings.hoverClose) {
 				marker.addListener('mouseout', () => {
-					if (defaultIconUrl && marker.setIcon) {
-						marker.setIcon(defaultIconUrl);
+					if (defaultIcon && marker.setIcon) {
+						marker.setIcon(defaultIcon);
 					}
 					infoWindow.close();
 				});
@@ -131,16 +142,16 @@
 
 		marker.addListener('click', () => {
 			if (state.activeMarker && state.activeMarker !== marker) {
-				if (state.activeMarker.setIcon && defaultIconUrl) {
-					state.activeMarker.setIcon(defaultIconUrl);
+				if (state.activeMarker.setIcon && defaultIcon) {
+					state.activeMarker.setIcon(defaultIcon);
 				}
 				if (state.activeInfo) {
 					state.activeInfo.close();
 				}
 			}
 
-			if (activeIconUrl && marker.setIcon) {
-				marker.setIcon(activeIconUrl);
+			if (activeIcon && marker.setIcon) {
+				marker.setIcon(activeIcon);
 			}
 
 			state.activeMarker = marker;
@@ -149,8 +160,8 @@
 		});
 
 		map.addListener('click', () => {
-			if (state.activeMarker && defaultIconUrl && state.activeMarker.setIcon) {
-				state.activeMarker.setIcon(defaultIconUrl);
+			if (state.activeMarker && defaultIcon && state.activeMarker.setIcon) {
+				state.activeMarker.setIcon(defaultIcon);
 			}
 			if (state.activeInfo) {
 				state.activeInfo.close();
