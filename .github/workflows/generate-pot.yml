@@ -1,0 +1,32 @@
+name: Generate POT
+
+on:
+  push:
+    branches: [ master ]
+    paths:
+      - '**.php'
+      - 'languages/*.pot'
+
+jobs:
+  pot:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup PHP with WP-CLI
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.2'
+          tools: wp-cli
+
+      - name: Regenerate POT file
+        run: |
+          wp i18n make-pot . languages/alpha-google-map-for-elementor.pot \
+            --slug=alpha-google-map-for-elementor \
+            --exclude=".github,.git,assets,nodes_modules,vendor"
+
+      - name: Commit updated POT
+        uses: stefanzweifel/git-auto-commit-action@v5
+        with:
+          commit_message: 'Update .pot translation template'
+          file_pattern: languages/*.pot

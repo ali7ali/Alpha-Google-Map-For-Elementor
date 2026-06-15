@@ -93,7 +93,7 @@ No. Elementor Website Builder must be installed and activated.
 * Updated alignment icons from FontAwesome to Elementor icons.
 * Added .editorconfig and .gitignore.
 * Added editor preview styles.
-* Added PHPCS GitHub Actions workflow.
+* Added PHPCS and POT generation GitHub Actions workflows.
 
 = 1.4.0 - 2026-02-01 =
 * Modernized Google Maps loader (async, locale-aware) with optional Map ID support.
