@@ -6,6 +6,9 @@ on:
   pull_request:
     branches: [ master ]
 
+permissions:
+  contents: read
+
 jobs:
   phpcs:
     runs-on: ubuntu-latest
@@ -20,7 +23,7 @@ jobs:
 
       - name: Install WordPress Coding Standards
         run: |
-          composer global config allow-plugins.dealerdirect/phpcodesniffer-composer-installer true
+          composer global config --no-plugins allow-plugins.dealerdirect/phpcodesniffer-composer-installer true
           composer global require --dev wp-coding-standards/wpcs:"^3.0"
 
       - name: Run PHPCS

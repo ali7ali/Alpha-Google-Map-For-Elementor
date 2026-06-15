@@ -5,7 +5,11 @@ on:
     branches: [ master ]
     paths:
       - '**.php'
+    paths-ignore:
       - 'languages/*.pot'
+
+permissions:
+  contents: write
 
 jobs:
   pot:
@@ -23,7 +27,7 @@ jobs:
         run: |
           wp i18n make-pot . languages/alpha-google-map-for-elementor.pot \
             --slug=alpha-google-map-for-elementor \
-            --exclude=".github,.git,assets,nodes_modules,vendor"
+            --exclude=".github,.git,assets,node_modules,vendor"
 
       - name: Commit updated POT
         uses: stefanzweifel/git-auto-commit-action@v5
