@@ -200,6 +200,7 @@
 			mapOptions.mapId = settings.mapId;
 		}
 
+		// Disable drag takes precedence over gesture handling.
 		if (settings.drag) {
 			mapOptions.gestureHandling = 'none';
 			mapOptions.draggable = false;

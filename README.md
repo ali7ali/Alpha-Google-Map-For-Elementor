@@ -12,7 +12,7 @@
 **Author:** ali7ali  
 **Contributors:** ali7ali  
 **Tags:** google-map, google, elementor, maps, page builder  
-**Requires at least:** 6.0  
+**Requires at least:** 6.4  
 **Tested up to:** 7.0  
 **Requires PHP:** 7.4  
 **Stable tag:** 1.5.0  
@@ -102,6 +102,9 @@ No. You need to install Elementor Website Builder first.
 - Compatibility for WordPress 7.0.
 - Compatibility for Elementor 4.x.
 - Fixed marker icon scaledSize when switching between normal and active states (props E0lee).
+- Fixed gesture handling conflict with disabled map drag.
+- Updated alignment icons from FontAwesome to Elementor icons.
+- Added .editorconfig and .gitignore.
 
 ### 1.4.0 - 2026-02-01
 
