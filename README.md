@@ -13,9 +13,9 @@
 **Contributors:** ali7ali  
 **Tags:** google-map, google, elementor, maps, page builder  
 **Requires at least:** 6.0  
-**Tested up to:** 6.9  
+**Tested up to:** 7.0  
 **Requires PHP:** 7.4  
-**Stable tag:** 1.4.0  
+**Stable tag:** 1.5.0  
 **License:** [GPLv3](https://www.gnu.org/licenses/gpl-3.0.html)
 
 Alpha Google Map For Elementor offers premium Google Map features for WordPress, enhancing your site with advanced map functionalities.
@@ -75,9 +75,9 @@ Use the WordPress.org forums for community support. If you spot a bug, you can l
 
 ## Upgrade Notice
 
-### 1.4
+### 1.5
 
-Modernized Google Maps loader
+Compatibility for WordPress 7.0 and Elementor 4.x
 
 ## Frequently Asked Questions
 
@@ -96,6 +96,12 @@ No. You need to install Elementor Website Builder first.
 7. **Pin Gallery.** Choose and add images to each pin gallery.
 
 ## Changelog
+
+### 1.5.0 - 2026-06-15
+
+- Compatibility for WordPress 7.0.
+- Compatibility for Elementor 4.x.
+- Fixed marker icon scaledSize when switching between normal and active states (props E0lee).
 
 ### 1.4.0 - 2026-02-01
 
