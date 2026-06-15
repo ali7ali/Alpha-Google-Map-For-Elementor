@@ -116,6 +116,7 @@ final class Alpha_Google_Map {
 	public function init(): void {
 		add_action( 'elementor/frontend/after_register_styles', array( $this, 'register_frontend_styles' ) );
 		add_action( 'elementor/frontend/after_register_scripts', array( $this, 'register_frontend_scripts' ) );
+		add_action( 'elementor/preview/enqueue_styles', array( $this, 'enqueue_editor_styles' ) );
 
 		add_action( 'elementor/widgets/register', array( $this, 'register_widgets' ) );
 	}
@@ -238,6 +239,18 @@ final class Alpha_Google_Map {
 		printf(
 			'<div class="notice notice-warning is-dismissible">%s</div>',
 			wp_kses( '<p>' . $message . '</p>', $allowed_html )
+		);
+	}
+
+	/**
+	 * Enqueue styles for the Elementor editor preview.
+	 */
+	public function enqueue_editor_styles(): void {
+		wp_enqueue_style(
+			'alphamap-editor',
+			ALPHAMAP_PL_ASSETS . 'css/editor-preview.css',
+			array(),
+			ALPHAMAP_VERSION
 		);
 	}
 

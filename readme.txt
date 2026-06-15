@@ -92,6 +92,8 @@ No. Elementor Website Builder must be installed and activated.
 * Fixed gesture handling conflict with disabled map drag.
 * Updated alignment icons from FontAwesome to Elementor icons.
 * Added .editorconfig and .gitignore.
+* Added editor preview styles.
+* Added PHPCS GitHub Actions workflow.
 
 = 1.4.0 - 2026-02-01 =
 * Modernized Google Maps loader (async, locale-aware) with optional Map ID support.
