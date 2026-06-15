@@ -27,4 +27,4 @@ jobs:
           composer global require --dev wp-coding-standards/wpcs:"^3.0"
 
       - name: Run PHPCS
-        run: phpcs -q --report=checkstyle --standard=phpcs.xml.dist . | cs2pr
+        run: phpcs -q --report=checkstyle --standard=phpcs.xml.dist . 2>/dev/null | cs2pr

@@ -15,7 +15,6 @@
 	<arg value="sp"/>
 
 	<rule ref="WordPress">
-		<exclude name="Generic.Files.LowerCasedConstantName" />
 		<exclude name="WordPress.Files.FileName.NotHyphenatedLowercase" />
 		<exclude name="WordPress.NamingConventions.ValidFunctionName" />
 		<exclude name="WordPress.NamingConventions.ValidVariableName" />
