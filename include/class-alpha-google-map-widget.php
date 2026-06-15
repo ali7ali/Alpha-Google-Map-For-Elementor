@@ -1119,8 +1119,8 @@ class Alpha_Google_Map_Widget extends Widget_Base {
 						// Sanitize IDs.
 						$gallery_ids = ! empty( $pin['pin_desc_gallery'] ) && is_array( $pin['pin_desc_gallery'] ) ? $pin['pin_desc_gallery'] : array();
 						$ids         = array_map( 'intval', wp_list_pluck( $gallery_ids, 'id' ) );
-						$count      = count( $ids );
-						$data_count = max( 0, $count - 4 );
+						$count       = count( $ids );
+						$data_count  = max( 0, $count - 4 );
 						$this->add_render_attribute( 'shortcode' . $index, 'ids', implode( ',', $ids ) );
 
 						?>

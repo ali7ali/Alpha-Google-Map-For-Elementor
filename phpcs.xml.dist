@@ -20,5 +20,6 @@
 		<exclude name="WordPress.NamingConventions.ValidVariableName" />
 		<exclude name="Squiz.Commenting.FileComment.Missing" />
 		<exclude name="Squiz.Commenting.FileComment.MissingPackageTag" />
+		<exclude name="WordPress.Files.FileName.InvalidClassFileName" />
 	</rule>
 </ruleset>
