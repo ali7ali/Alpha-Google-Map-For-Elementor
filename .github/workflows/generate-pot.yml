@@ -5,8 +5,6 @@ on:
     branches: [ master ]
     paths:
       - '**.php'
-    paths-ignore:
-      - 'languages/*.pot'
 
 permissions:
   contents: write

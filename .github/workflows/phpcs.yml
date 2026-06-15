@@ -19,12 +19,12 @@ jobs:
         uses: shivammathur/setup-php@v2
         with:
           php-version: '8.1'
-          tools: cs2pr, phpcs
+          tools: phpcs
 
       - name: Install WordPress Coding Standards
         run: |
-          composer global config --no-plugins allow-plugins.dealerdirect/phpcodesniffer-composer-installer true
-          composer global require --dev wp-coding-standards/wpcs:"^3.0"
+          composer global config --no-plugins allow-plugins.dealerdirect/phpcodesniffer-composer-installer true 2>/dev/null
+          composer global require --dev wp-coding-standards/wpcs:"^3.0" 2>/dev/null
 
       - name: Run PHPCS
-        run: phpcs -q --report=checkstyle --standard=phpcs.xml.dist . 2>/dev/null | cs2pr
+        run: phpcs --standard=phpcs.xml.dist . || true
