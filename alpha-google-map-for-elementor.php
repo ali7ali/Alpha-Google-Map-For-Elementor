@@ -39,14 +39,16 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 if ( defined( 'ALPHAMAP_ADDONS_PL_ROOT' ) && realpath( (string) ALPHAMAP_ADDONS_PL_ROOT ) !== realpath( __FILE__ ) ) {
-	/**
-	 * Display a notice when another copy of the plugin is already active.
-	 */
-	function alpha_google_map_for_elementor_duplicate_copy_notice(): void {
-		printf(
-			'<div class="notice notice-error"><p>%s</p></div>',
-			esc_html__( 'Alpha Google Map For Elementor is already active from another plugin folder. Deactivate and delete the old copy before activating this one, or install the update using a ZIP whose top-level folder is alpha-google-map-for-elementor.', 'alpha-google-map-for-elementor' )
-		);
+	if ( ! function_exists( 'alpha_google_map_for_elementor_duplicate_copy_notice' ) ) {
+		/**
+		 * Display a notice when another copy of the plugin is already active.
+		 */
+		function alpha_google_map_for_elementor_duplicate_copy_notice(): void {
+			printf(
+				'<div class="notice notice-error"><p>%s</p></div>',
+				esc_html__( 'Alpha Google Map For Elementor is already active from another plugin folder. Deactivate and delete the old copy before activating this one, or install the update using a ZIP whose top-level folder is alpha-google-map-for-elementor.', 'alpha-google-map-for-elementor' )
+			);
+		}
 	}
 	add_action( 'admin_notices', 'alpha_google_map_for_elementor_duplicate_copy_notice' );
 

@@ -988,9 +988,9 @@ class Alpha_Google_Map_Widget extends Widget_Base {
 
 		$gesture = ! empty( $settings['alpha_map_gesture_handling'] ) && 'yes' === $settings['alpha_map_gesture_handling'] ? 'greedy' : 'auto';
 
-		$locationlat = ! empty( $settings['alpha_location_lat'] ) ? sanitize_text_field( $settings['alpha_location_lat'] ) : '18.591212';
+		$locationlat = $this->normalize_coordinate( $settings['alpha_location_lat'] ?? '', 18.591212, -90, 90 );
 
-		$locationlong = ! empty( $settings['alpha_location_long'] ) ? sanitize_text_field( $settings['alpha_location_long'] ) : '73.741261';
+		$locationlong = $this->normalize_coordinate( $settings['alpha_location_long'] ?? '', 73.741261, -180, 180 );
 
 		$marker_width = ! empty( $settings['alpha_markers_width'] ) ? (int) $settings['alpha_markers_width'] : 1000;
 
@@ -1094,8 +1094,8 @@ class Alpha_Google_Map_Widget extends Widget_Base {
 					foreach ( $map_pins as $index => $pin ) {
 						$key = 'map_marker_' . $index;
 						// Sanitize data before use.
-						$latitude        = isset( $pin['map_latitude'] ) ? sanitize_text_field( $pin['map_latitude'] ) : '';
-						$longitude       = isset( $pin['map_longitude'] ) ? sanitize_text_field( $pin['map_longitude'] ) : '';
+						$latitude        = $this->normalize_coordinate( $pin['map_latitude'] ?? '', '', -90, 90 );
+						$longitude       = $this->normalize_coordinate( $pin['map_longitude'] ?? '', '', -180, 180 );
 						$icon_url        = isset( $pin['pin_icon']['url'] ) ? esc_url( $pin['pin_icon']['url'] ) : '';
 						$icon_active_url = isset( $pin['pin_active_icon']['url'] ) ? esc_url( $pin['pin_active_icon']['url'] ) : '';
 						$icon_size       = isset( $pin['pin_icon_size']['size'] ) ? intval( $pin['pin_icon_size']['size'] ) : '';
@@ -1151,5 +1151,28 @@ class Alpha_Google_Map_Widget extends Widget_Base {
 			?>
 		</div>
 		<?php
+	}
+
+	/**
+	 * Normalize latitude/longitude values before exposing them in data attributes.
+	 *
+	 * @param mixed      $value    Raw coordinate value.
+	 * @param int|string $fallback Value to use when the coordinate is empty or invalid.
+	 * @param int        $min      Minimum allowed coordinate.
+	 * @param int        $max      Maximum allowed coordinate.
+	 * @return float|int|string
+	 */
+	private function normalize_coordinate( $value, $fallback, int $min, int $max ) {
+		if ( '' === $value || null === $value || ! is_numeric( $value ) ) {
+			return $fallback;
+		}
+
+		$coordinate = (float) $value;
+
+		if ( $coordinate < $min || $coordinate > $max ) {
+			return $fallback;
+		}
+
+		return $coordinate;
 	}
 }

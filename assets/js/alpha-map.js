@@ -115,6 +115,7 @@
 
 		const defaultIcon = icon && icon.url ? buildIconObject(icon.url) : null;
 		const activeIcon = icon && icon.hover ? buildIconObject(icon.hover) : null;
+		marker.alphaDefaultIcon = defaultIcon;
 
 		if (settings.automaticOpen) {
 			infoWindow.open(map, marker);
@@ -142,8 +143,8 @@
 
 		marker.addListener('click', () => {
 			if (state.activeMarker && state.activeMarker !== marker) {
-				if (state.activeMarker.setIcon && defaultIcon) {
-					state.activeMarker.setIcon(defaultIcon);
+				if (state.activeMarker.setIcon && state.activeMarker.alphaDefaultIcon) {
+					state.activeMarker.setIcon(state.activeMarker.alphaDefaultIcon);
 				}
 				if (state.activeInfo) {
 					state.activeInfo.close();
@@ -157,15 +158,6 @@
 			state.activeMarker = marker;
 			state.activeInfo = infoWindow;
 			infoWindow.open(map, marker);
-		});
-
-		map.addListener('click', () => {
-			if (state.activeMarker && defaultIcon && state.activeMarker.setIcon) {
-				state.activeMarker.setIcon(defaultIcon);
-			}
-			if (state.activeInfo) {
-				state.activeInfo.close();
-			}
 		});
 	};
 
@@ -231,6 +223,15 @@
 				},
 				state,
 			});
+		});
+
+		map.addListener('click', () => {
+			if (state.activeMarker && state.activeMarker.alphaDefaultIcon && state.activeMarker.setIcon) {
+				state.activeMarker.setIcon(state.activeMarker.alphaDefaultIcon);
+			}
+			if (state.activeInfo) {
+				state.activeInfo.close();
+			}
 		});
 
 		applyGalleryOverlay($scope);

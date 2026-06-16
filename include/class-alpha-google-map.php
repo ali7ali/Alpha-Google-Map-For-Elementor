@@ -125,6 +125,10 @@ final class Alpha_Google_Map {
 	 * Warning when the site doesn't have Elementor installed or activated.
 	 */
 	public function admin_notice_missing_main_plugin(): void {
+		if ( ! current_user_can( 'activate_plugins' ) ) {
+			return;
+		}
+
 		$message = sprintf(
 		/* translators: 1: Plugin name 2: Elementor */
 			__( '"%1$s" requires "%2$s" to be installed and activated.', 'alpha-google-map-for-elementor' ),
