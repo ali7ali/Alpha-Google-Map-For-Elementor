@@ -9,7 +9,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2026-06-15T13:00:17+00:00\n"
+"POT-Creation-Date: 2026-06-16T12:55:41+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.12.0\n"
 "X-Domain: alpha-google-map-for-elementor\n"
@@ -40,6 +40,15 @@ msgstr ""
 #. Author URI of the plugin
 #: alpha-google-map-for-elementor.php
 msgid "https://github.com/Ali7Ali"
+msgstr ""
+
+#: alpha-google-map-for-elementor.php:48
+#: alpha-google-map-for-elementor.php:63
+msgid "Alpha Google Map For Elementor is already active from another plugin folder. Deactivate and delete the old copy before activating this one, or install the update using a ZIP whose top-level folder is alpha-google-map-for-elementor."
+msgstr ""
+
+#: alpha-google-map-for-elementor.php:64
+msgid "Plugin activation blocked"
 msgstr ""
 
 #: include/class-alpha-google-map-widget.php:53
