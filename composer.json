@@ -1,0 +1,21 @@
+{
+	"name": "ali7ali/alpha-google-map-for-elementor",
+	"description": "Development tooling for Alpha Google Map For Elementor.",
+	"type": "wordpress-plugin",
+	"license": "GPL-3.0-or-later",
+	"require-dev": {
+		"dealerdirect/phpcodesniffer-composer-installer": "^1.1",
+		"squizlabs/php_codesniffer": "^3.10",
+		"wp-coding-standards/wpcs": "^3.0"
+	},
+	"config": {
+		"allow-plugins": {
+			"dealerdirect/phpcodesniffer-composer-installer": true
+		},
+		"sort-packages": true
+	},
+	"scripts": {
+		"phpcs": "phpcs --standard=phpcs.xml.dist .",
+		"phpcbf": "phpcbf --standard=phpcs.xml.dist ."
+	}
+}

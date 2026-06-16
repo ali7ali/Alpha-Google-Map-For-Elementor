@@ -8,6 +8,9 @@
  * Version:     1.5.0
  * Text Domain: alpha-google-map-for-elementor
  * Domain Path: /languages
+ * Requires at least: 6.4
+ * Tested up to: 7.0
+ * Requires PHP: 7.4
  * License: GPLv3
  *
  * @package    AlphaGoogleMap
@@ -33,6 +36,38 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit; // Exit if accessed directly.
+}
+
+if ( defined( 'ALPHAMAP_ADDONS_PL_ROOT' ) && realpath( (string) ALPHAMAP_ADDONS_PL_ROOT ) !== realpath( __FILE__ ) ) {
+	/**
+	 * Display a notice when another copy of the plugin is already active.
+	 */
+	function alpha_google_map_for_elementor_duplicate_copy_notice(): void {
+		printf(
+			'<div class="notice notice-error"><p>%s</p></div>',
+			esc_html__( 'Alpha Google Map For Elementor is already active from another plugin folder. Deactivate and delete the old copy before activating this one, or install the update using a ZIP whose top-level folder is alpha-google-map-for-elementor.', 'alpha-google-map-for-elementor' )
+		);
+	}
+	add_action( 'admin_notices', 'alpha_google_map_for_elementor_duplicate_copy_notice' );
+
+	register_activation_hook(
+		__FILE__,
+		static function (): void {
+			if ( ! function_exists( 'deactivate_plugins' ) ) {
+				require_once ABSPATH . 'wp-admin/includes/plugin.php';
+			}
+
+			deactivate_plugins( plugin_basename( __FILE__ ) );
+
+			wp_die(
+				esc_html__( 'Alpha Google Map For Elementor is already active from another plugin folder. Deactivate and delete the old copy before activating this one, or install the update using a ZIP whose top-level folder is alpha-google-map-for-elementor.', 'alpha-google-map-for-elementor' ),
+				esc_html__( 'Plugin activation blocked', 'alpha-google-map-for-elementor' ),
+				array( 'back_link' => true )
+			);
+		}
+	);
+
+	return;
 }
 
 define( 'ALPHAMAP_VERSION', '1.5.0' );

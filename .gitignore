@@ -3,6 +3,8 @@ Thumbs.db
 *.log
 node_modules/
 vendor/
+build/
+*.zip
 *.sql
 *.swp
 *.swo

@@ -1,0 +1,36 @@
+name: Build Installable Plugin ZIP
+
+on:
+  push:
+    branches: [ master ]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  package:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Build ZIP with WordPress.org plugin slug
+        run: |
+          mkdir -p build/alpha-google-map-for-elementor
+          rsync -a ./ build/alpha-google-map-for-elementor/ \
+            --exclude='.git' \
+            --exclude='.github' \
+            --exclude='build' \
+            --exclude='vendor' \
+            --exclude='node_modules' \
+            --exclude='composer.json' \
+            --exclude='composer.lock' \
+            --exclude='phpcs.xml.dist'
+          cd build
+          zip -qr alpha-google-map-for-elementor.zip alpha-google-map-for-elementor
+
+      - name: Upload installable ZIP
+        uses: actions/upload-artifact@v4
+        with:
+          name: alpha-google-map-for-elementor
+          path: build/alpha-google-map-for-elementor.zip
