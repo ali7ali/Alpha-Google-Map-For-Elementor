@@ -20,6 +20,7 @@ jobs:
         run: scripts/build-zip.sh
 
       - name: Upload installable ZIP
+        if: github.event_name != 'release'
         uses: actions/upload-artifact@v4
         with:
           name: alpha-google-map-for-elementor
