@@ -9,16 +9,16 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2026-06-16T14:03:43+00:00\n"
+"POT-Creation-Date: 2026-06-17T03:51:45+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.12.0\n"
 "X-Domain: alpha-google-map-for-elementor\n"
 
 #. Plugin Name of the plugin
 #: alpha-google-map-for-elementor.php
-#: include/class-alpha-google-map.php:135
-#: include/class-alpha-google-map.php:179
-#: include/class-alpha-google-map.php:207
+#: include/class-alpha-google-map.php:134
+#: include/class-alpha-google-map.php:178
+#: include/class-alpha-google-map.php:206
 msgid "Alpha Google Map For Elementor"
 msgstr ""
 
@@ -364,40 +364,40 @@ msgid "Text Color"
 msgstr ""
 
 #. translators: 1: Plugin name 2: Elementor
-#: include/class-alpha-google-map.php:134
+#: include/class-alpha-google-map.php:133
 #, php-format
 msgid "\"%1$s\" requires \"%2$s\" to be installed and activated."
 msgstr ""
 
-#: include/class-alpha-google-map.php:136
-#: include/class-alpha-google-map.php:180
+#: include/class-alpha-google-map.php:135
+#: include/class-alpha-google-map.php:179
 msgid "Elementor"
 msgstr ""
 
-#: include/class-alpha-google-map.php:145
+#: include/class-alpha-google-map.php:144
 msgid "Activate Elementor"
 msgstr ""
 
-#: include/class-alpha-google-map.php:148
+#: include/class-alpha-google-map.php:147
 msgid "Install Elementor"
 msgstr ""
 
 #. translators: 1: Plugin name 2: Elementor 3: Required Elementor version
-#: include/class-alpha-google-map.php:178
+#: include/class-alpha-google-map.php:177
 #, php-format
 msgid "\"%1$s\" requires \"%2$s\" version %3$s or greater"
 msgstr ""
 
 #. translators: 1: Plugin name 2: PHP 3: Required PHP version
-#: include/class-alpha-google-map.php:206
+#: include/class-alpha-google-map.php:205
 #, php-format
 msgid "\"%1$s\" requires \"%2$s\" version %3$s or greater."
 msgstr ""
 
-#: include/class-alpha-google-map.php:208
+#: include/class-alpha-google-map.php:207
 msgid "PHP"
 msgstr ""
 
-#: include/class-alpha-google-map.php:281
+#: include/class-alpha-google-map.php:268
 msgid "Google Maps API key is missing. Set it under Elementor > Settings > Integrations."
 msgstr ""
