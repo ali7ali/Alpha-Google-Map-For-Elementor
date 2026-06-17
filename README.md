@@ -1,13 +1,13 @@
 # Alpha Google Map For Elementor
 
 [![WordPress](https://img.shields.io/badge/WordPress-%E2%86%92-lightgrey.svg?style=flat-square)](https://wordpress.org/plugins/alpha-google-map-for-elementor/)
-[![WordPress Plugin Downloads](https://img.shields.io/wordpress/plugin/dt/alpha-google-map-for-elementor?style=flat-square)](https://wordpress.org/plugins/alpha-google-map-for-elementor/)
-[![WordPress Plugin Last Updated](https://img.shields.io/wordpress/plugin/last-updated/alpha-google-map-for-elementor?style=flat-square)](https://wordpress.org/plugins/alpha-google-map-for-elementor/)
-[![Required PHP Version](https://img.shields.io/wordpress/plugin/required-php/alpha-google-map-for-elementor?style=flat-square)](https://wordpress.org/plugins/alpha-google-map-for-elementor/)
-[![Required WP Version](https://img.shields.io/wordpress/plugin/wp-version/alpha-google-map-for-elementor?style=flat-square)](https://wordpress.org/plugins/alpha-google-map-for-elementor/)
-[![Tested WP Version](https://img.shields.io/wordpress/plugin/tested/alpha-google-map-for-elementor?style=flat-square)](https://wordpress.org/plugins/alpha-google-map-for-elementor/)
-[![WordPress Plugin Rating](https://img.shields.io/wordpress/plugin/stars/alpha-google-map-for-elementor?style=flat-square)](https://wordpress.org/plugins/alpha-google-map-for-elementor/)
-[![WordPress Plugin Version](https://img.shields.io/wordpress/plugin/v/alpha-google-map-for-elementor?style=flat-square)](https://wordpress.org/plugins/alpha-google-map-for-elementor/)
+[![WordPress Plugin Downloads](https://img.shields.io/wordpress/plugin/dt/alpha-google-map-for-elementor.svg?style=flat-square)](https://wordpress.org/plugins/alpha-google-map-for-elementor/)
+[![WordPress Plugin Last Updated](https://img.shields.io/wordpress/plugin/last-updated/alpha-google-map-for-elementor.svg?style=flat-square)](https://wordpress.org/plugins/alpha-google-map-for-elementor/)
+[![Required PHP Version](https://img.shields.io/wordpress/plugin/required-php/alpha-google-map-for-elementor.svg?style=flat-square)](https://wordpress.org/plugins/alpha-google-map-for-elementor/)
+[![Required WP Version](https://img.shields.io/wordpress/plugin/wp-version/alpha-google-map-for-elementor.svg?style=flat-square)](https://wordpress.org/plugins/alpha-google-map-for-elementor/)
+[![Tested WP Version](https://img.shields.io/wordpress/plugin/tested/alpha-google-map-for-elementor.svg?style=flat-square)](https://wordpress.org/plugins/alpha-google-map-for-elementor/)
+[![WordPress Plugin Rating](https://img.shields.io/wordpress/plugin/stars/alpha-google-map-for-elementor.svg?style=flat-square)](https://wordpress.org/plugins/alpha-google-map-for-elementor/)
+[![WordPress Plugin Version](https://img.shields.io/wordpress/plugin/v/alpha-google-map-for-elementor.svg?style=flat-square)](https://wordpress.org/plugins/alpha-google-map-for-elementor/)
 
 **Author:** ali7ali  
 **Contributors:** ali7ali  
@@ -105,7 +105,7 @@ No. You need to install Elementor Website Builder first.
 - Fixed gesture handling conflict with disabled map drag.
 - Updated alignment icons from FontAwesome to Elementor icons.
 - Added .editorconfig and .gitignore.
-- Added editor preview styles.
+- Removed the editor-only placeholder styling so the real map preview can render in Elementor.
 - Added PHPCS GitHub Actions workflow.
 
 ### 1.4.0 - 2026-02-01
